@@ -12,5 +12,12 @@ const Title = styled.h1`
 `;
 
 export default function Home() {
-  return <Title>Wikid!</Title>;
+  return (
+    <div>
+      <Title>Wikid!</Title>
+      <h1 className="text-text3xlBold font-pretendard text-primaryGreen200">
+        Tailwind 적용 완료
+      </h1>
+    </div>
+  );
 }
