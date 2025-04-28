@@ -1,0 +1,11 @@
+.linkButton {
+    display: flex;
+    align-items: center;
+    background-color: #EEF9F6;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
