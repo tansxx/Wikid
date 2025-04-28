@@ -1,20 +1,12 @@
 import React from "react";
 import "@/styles/GlobalStyle.ts";
-import WikiAvatar from "@/components/mywikipage/WikiAvatar";
+import ProfileBar from "@/components/mywikipage/ProfileBar/ProfileBar";
 
 export default function Home() {
   return (
     <div>
-      <WikiAvatar
-        src="/assets/images/img_profile.png"
-        isEditMode={false}
-        alt="일반 프로필"
-      />
-      <WikiAvatar
-        src="/assets/images/img_profile.png"
-        isEditMode={true}
-        alt="수정 프로필"
-      />
+      <ProfileBar isEditMode={true} />
+      <ProfileBar isEditMode={false} />
     </div>
   );
 }
