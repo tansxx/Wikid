@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
-import CloseButton from "@/components/CloseButton";
-import PrimaryButton from "@/components/PrimaryButton";
-import Toast from "@/components/Toast";
+import CloseButton from "@/components/common/CloseButton";
+import PrimaryButton from "@/components/common/PrimaryButton";
+import Toast from "@/components/common/Toast";
 import Image from "next/image";
 import {
   ModalBox,

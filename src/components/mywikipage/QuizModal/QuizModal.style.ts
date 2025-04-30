@@ -1,6 +1,6 @@
 import { color, font } from "@/styles/theme";
 import styled from "styled-components";
-import PrimaryButton from "@/components/PrimaryButton";
+import PrimaryButton from "@/components/common/PrimaryButton";
 
 export const ModalBox = styled.div`
   width: 100%;
