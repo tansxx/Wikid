@@ -1,47 +1,48 @@
-import styles from './PrimaryButton.module.css';
+import styles from "./PrimaryButton.module.css";
 
 interface PrimaryButtonProps {
   label?: string;
   onClick?: () => void;
   height?: number;
   width?: number | string;
-  variant?: 'filled-green' | 'filled-gray' | 'outlined-green' | 'outlined-gray';
-  type?: 'button' | 'submit' | 'reset';
+  variant?: "filled-green" | "filled-gray" | "outlined-green" | "outlined-gray";
+  type?: "button" | "submit" | "reset";
+  className?: string;
 }
 
 export default function PrimaryButton({
-  label = '버튼',
+  label = "버튼",
   onClick,
   height = 48,
-  width = 'auto',
-  variant = 'filled-green',
-  type = 'button',
+  width = "auto",
+  variant = "filled-green",
+  type = "button",
 }: PrimaryButtonProps) {
   const getVariantStyle = () => {
     switch (variant) {
-      case 'filled-green':
+      case "filled-green":
         return {
-          backgroundColor: '#4CBFA4',
-          color: '#FFFFFF',
-          border: 'none',
+          backgroundColor: "#4CBFA4",
+          color: "#FFFFFF",
+          border: "none",
         };
-      case 'filled-gray':
+      case "filled-gray":
         return {
-          backgroundColor: '#C6CADA',
-          color: '#FFFFFF',
-          border: 'none',
+          backgroundColor: "#C6CADA",
+          color: "#FFFFFF",
+          border: "none",
         };
-      case 'outlined-green':
+      case "outlined-green":
         return {
-          backgroundColor: 'transparent',
-          color: '#4CBFA4',
-          border: '1px solid #4CBFA4',
+          backgroundColor: "transparent",
+          color: "#4CBFA4",
+          border: "1px solid #4CBFA4",
         };
-      case 'outlined-gray':
+      case "outlined-gray":
         return {
-          backgroundColor: 'transparent',
-          color: '#666666',
-          border: '1px solid #C6CADA',
+          backgroundColor: "transparent",
+          color: "#666666",
+          border: "1px solid #C6CADA",
         };
       default:
         return {};
@@ -55,7 +56,7 @@ export default function PrimaryButton({
       onClick={onClick}
       style={{
         height: `${height}px`,
-        width: typeof width === 'number' ? `${width}px` : width,
+        width: typeof width === "number" ? `${width}px` : width,
         ...getVariantStyle(),
       }}
     >

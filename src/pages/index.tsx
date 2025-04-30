@@ -49,4 +49,5 @@ const OpenButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  margin-bottom: 40px;
 `;
