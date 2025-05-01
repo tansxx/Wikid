@@ -22,6 +22,30 @@ const GlobalStyle = createGlobalStyle`
     background: none;
     cursor: pointer;
   }
+
+  @keyframes toast-move {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.animate-toast-move {
+  animation: toast-move 2.5s ease-in-out forwards;
+}
+
 `;
 
 export default GlobalStyle;
