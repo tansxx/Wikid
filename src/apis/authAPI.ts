@@ -1,7 +1,7 @@
-import axios from "@/libs/axios";
+import { axiosInstance } from "@/apis/axios";
 
 export async function loginAPI(data: { email: string; password: string }) {
-  const response = await axios.post(`/api/14-5/auth/signIn`, data);
+  const response = await axiosInstance.post(`/api/14-5/auth/signIn`, data);
   return response.data;
 }
 
@@ -11,7 +11,7 @@ export async function signupAPI(data: {
   name: string;
   passwordConfirmation?: string;
 }) {
-  const response = await axios.post("/api/14-5/auth/signUp", data);
+  const response = await axiosInstance.post("/api/14-5/auth/signUp", data);
   return response.data;
 }
 
@@ -20,7 +20,10 @@ export async function changePasswordAPI(data: {
   password: string;
   passwordConfirmation: string;
 }) {
-  const response = await axios.patch("/api/14-5/users/me/password", data);
+  const response = await axiosInstance.patch(
+    "/api/14-5/users/me/password",
+    data
+  );
   return response.data;
 }
 
@@ -28,6 +31,6 @@ export async function createQuestionAPI(data: {
   securityQuestion: string;
   securityAnswer: string;
 }) {
-  const response = await axios.post("/api/14-5/profiles", data);
+  const response = await axiosInstance.post("/api/14-5/profiles", data);
   return response.data;
 }

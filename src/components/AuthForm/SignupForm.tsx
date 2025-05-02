@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { signupAPI } from "@/apis/authAPI";
+const EMAIL_REGEX = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export interface InputValues {
   email: string;
@@ -45,10 +46,6 @@ const SignupForm = () => {
       setIsLoading(false);
     }
   };
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-    }
-  };
 
   // 비밀번호 확인용
   const password = watch("password", "");
@@ -71,7 +68,6 @@ const SignupForm = () => {
               message: "10자 이하로 작성해 주세요",
             },
           })}
-          onKeyDown={handleKeyDown}
           error={errors.name}
         />
         <FormInput
@@ -82,11 +78,10 @@ const SignupForm = () => {
           register={register("email", {
             required: "이메일은 필수입니다.",
             pattern: {
-              value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              value: EMAIL_REGEX,
               message: "이메일 형식으로 작성해 주세요",
             },
           })}
-          onKeyDown={handleKeyDown}
           error={errors.email}
         />
         <FormInput
@@ -101,7 +96,6 @@ const SignupForm = () => {
               message: "8자 이상 입력해 주세요",
             },
           })}
-          onKeyDown={handleKeyDown}
           error={errors.password}
         />
         <FormInput
@@ -114,7 +108,6 @@ const SignupForm = () => {
             validate: (value: string) =>
               value === password || "비밀번호가 일치하지 않습니다.",
           })}
-          onKeyDown={handleKeyDown}
           error={errors.confirmPassword}
         />
         <FormButton type="submit" loading={isLoading}>

@@ -4,6 +4,7 @@ import { font, color } from "@/styles/theme";
 import Link from "next/link";
 import { useAuthStore } from "@/stores/authStore";
 import { useRouter } from "next/navigation";
+import Mainfooter from "@/components/Mainfooter";
 
 export default function Home() {
   const { isLoggedIn, logout } = useAuthStore();
@@ -42,6 +43,7 @@ export default function Home() {
           임시 로그인페이지이동버튼
         </button>
       </Link>
+      <Mainfooter />
     </div>
   );
 }

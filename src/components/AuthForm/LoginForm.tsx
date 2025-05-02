@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useAuthStore } from "@/stores/authStore";
 import { loginAPI } from "@/apis/authAPI";
+const EMAIL_REGEX = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 const LoginForm = () => {
   const {
@@ -49,11 +50,6 @@ const LoginForm = () => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-    }
-  };
-
   return (
     <>
       <form
@@ -68,11 +64,10 @@ const LoginForm = () => {
           register={register("email", {
             required: "이메일은 필수입니다.",
             pattern: {
-              value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              value: EMAIL_REGEX,
               message: "이메일 형식이 아닙니다.",
             },
           })}
-          onKeyDown={handleKeyDown}
           error={errors.email}
         />
         <FormInput
@@ -87,10 +82,9 @@ const LoginForm = () => {
               message: "8자 이상 입력해 주세요",
             },
           })}
-          onKeyDown={handleKeyDown}
           error={errors.password}
         />
-        <FormButton type="submit" loading={isLoading} disabled={isLoading}>
+        <FormButton type="submit" loading={isLoading}>
           {isLoading ? "로그인 중..." : "로그인"}
         </FormButton>
         <div className="flex justify-center">
