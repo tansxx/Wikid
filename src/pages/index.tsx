@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "@/styles/GlobalStyle.ts";
-import { font, color } from "@/styles/theme";
 import Link from "next/link";
 import { useAuthStore } from "@/stores/authStore";
 import { useRouter } from "next/navigation";
