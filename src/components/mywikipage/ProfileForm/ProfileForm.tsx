@@ -1,78 +1,153 @@
-import { useState } from "react";
-import ProfileInput from "@/components/mywikipage/ProfileForm/ProfileInput/ProfileInput";
-import { FormWrapper } from "../ProfileForm/ProfileForm.style";
+import { useForm, Controller } from "react-hook-form";
+import ProfileInput from "@/components/myWikiPage/ProfileForm/ProfileInput/ProfileInput";
+import { FormWrapper } from "./ProfileForm.style";
 
 interface ProfileFormProps {
   isEditMode: boolean;
+  name: string;
+  nickname?: string;
+  city?: string;
+  mbti?: string;
+  job?: string;
+  sns?: string;
+  birthday?: string;
+  bloodType?: string;
+  nationality?: string;
 }
 
-export default function ProfileForm({ isEditMode }: ProfileFormProps) {
-  const [city, setCity] = useState("");
-  const [mbti, setMbti] = useState("");
-  const [job, setJob] = useState("");
-  const [sns, setSns] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [bloodType, setBloodType] = useState("");
-  const [nationality, setNationality] = useState("");
+interface ProfileFormValues {
+  nickname: string;
+  city: string;
+  mbti: string;
+  job: string;
+  sns: string;
+  birthday: string;
+  bloodType: string;
+  nationality: string;
+}
+
+export default function ProfileForm({
+  isEditMode,
+  nickname = "",
+  city = "",
+  mbti = "",
+  job = "",
+  sns = "",
+  birthday = "",
+  bloodType = "",
+  nationality = "",
+}: ProfileFormProps) {
+  const { control } = useForm<ProfileFormValues>({
+    defaultValues: {
+      nickname,
+      city,
+      mbti,
+      job,
+      sns,
+      birthday,
+      bloodType,
+      nationality,
+    },
+  });
 
   return (
     <FormWrapper>
-      <ProfileInput
-        label="거주 도시"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        disabled={!isEditMode}
-        isEditMode={isEditMode}
+      <Controller
+        name="city"
+        control={control}
+        render={({ field }) => (
+          <ProfileInput
+            label="거주 도시"
+            {...field}
+            disabled={!isEditMode}
+            isEditMode={isEditMode}
+          />
+        )}
       />
-      <ProfileInput
-        label="MBTI"
-        value={mbti}
-        onChange={(e) => setMbti(e.target.value)}
-        disabled={!isEditMode}
-        isEditMode={isEditMode}
+      <Controller
+        name="mbti"
+        control={control}
+        render={({ field }) => (
+          <ProfileInput
+            label="MBTI"
+            {...field}
+            disabled={!isEditMode}
+            isEditMode={isEditMode}
+          />
+        )}
       />
-      <ProfileInput
-        label="직업"
-        value={job}
-        onChange={(e) => setJob(e.target.value)}
-        disabled={!isEditMode}
-        isEditMode={isEditMode}
+      <Controller
+        name="job"
+        control={control}
+        render={({ field }) => (
+          <ProfileInput
+            label="직업"
+            {...field}
+            disabled={!isEditMode}
+            isEditMode={isEditMode}
+          />
+        )}
       />
-      <ProfileInput
-        label="SNS 계정"
-        value={sns}
-        onChange={(e) => setSns(e.target.value)}
-        disabled={!isEditMode}
-        isEditMode={isEditMode}
+      <Controller
+        name="sns"
+        control={control}
+        render={({ field }) => (
+          <ProfileInput
+            label="SNS 계정"
+            {...field}
+            disabled={!isEditMode}
+            isEditMode={isEditMode}
+          />
+        )}
       />
-      <ProfileInput
-        label="생일"
-        value={birthday}
-        onChange={(e) => setBirthday(e.target.value)}
-        disabled={!isEditMode}
-        isEditMode={isEditMode}
+      <Controller
+        name="birthday"
+        control={control}
+        render={({ field }) => (
+          <ProfileInput
+            label="생일"
+            {...field}
+            type="date"
+            disabled={!isEditMode}
+            isEditMode={isEditMode}
+          />
+        )}
       />
-      <ProfileInput
-        label="별명"
-        value={nickname}
-        onChange={(e) => setNickname(e.target.value)}
-        disabled={!isEditMode}
-        isEditMode={isEditMode}
+      <Controller
+        name="nickname"
+        control={control}
+        render={({ field }) => (
+          <ProfileInput
+            label="별명"
+            {...field}
+            disabled={!isEditMode}
+            isEditMode={isEditMode}
+          />
+        )}
       />
-      <ProfileInput
-        label="혈액형"
-        value={bloodType}
-        onChange={(e) => setBloodType(e.target.value)}
-        disabled={!isEditMode}
-        isEditMode={isEditMode}
+      <Controller
+        name="bloodType"
+        control={control}
+        render={({ field }) => (
+          <ProfileInput
+            label="혈액형"
+            {...field}
+            disabled={!isEditMode}
+            isEditMode={isEditMode}
+          />
+        )}
       />
-      <ProfileInput
-        label="국적"
-        value={nationality}
-        onChange={(e) => setNationality(e.target.value)}
-        disabled={!isEditMode}
-        isEditMode={isEditMode}
+      <Controller
+        name="nationality"
+        control={control}
+        render={({ field }) => (
+          <ProfileInput
+            label="국적"
+            {...field}
+            disabled={!isEditMode}
+            isEditMode={isEditMode}
+          />
+        )}
       />
     </FormWrapper>
   );

@@ -15,6 +15,4 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-console.log("Base URL:", process.env.NEXT_PUBLIC_API_URL);
-
 export default axiosInstance;

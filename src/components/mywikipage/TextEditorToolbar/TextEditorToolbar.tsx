@@ -17,9 +17,13 @@ import {
 
 interface TextEditorToolbarProps {
   editor: Editor | null;
+  userName: string;
 }
 
-export default function TextEditorToolbar({ editor }: TextEditorToolbarProps) {
+export default function TextEditorToolbar({
+  editor,
+  userName,
+}: TextEditorToolbarProps) {
   if (!editor) return null;
 
   const handleHeadingChange = (level: string) => {
@@ -29,7 +33,7 @@ export default function TextEditorToolbar({ editor }: TextEditorToolbarProps) {
 
   return (
     <S.BarWrapper>
-      <S.LeftLabel>이지동</S.LeftLabel>
+      <S.LeftLabel>{userName}</S.LeftLabel>
 
       <S.RightControls>
         <S.ControlGroup>

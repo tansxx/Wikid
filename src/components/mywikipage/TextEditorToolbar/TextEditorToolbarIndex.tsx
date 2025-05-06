@@ -1,6 +1,6 @@
 import React from "react";
 import "@/styles/GlobalStyle.ts";
-import TextEditorToolbar from "@/components/mywikipage/TextEditorToolbar/TextEditorToolbar";
+import TextEditorToolbar from "@/components/myWikiPage/TextEditorToolbar/TextEditorToolbar";
 import { useEditor, EditorContent } from "@tiptap/react";
 
 // TipTap extensions

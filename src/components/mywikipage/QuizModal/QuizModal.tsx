@@ -15,7 +15,7 @@ import {
   Input,
   ErrorMessage,
   Notice,
-} from "../QuizModal/QuizModal.style";
+} from "./QuizModal.style";
 
 type ModalProps = {
   onClose: () => void;
