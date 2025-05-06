@@ -22,3 +22,14 @@ export const fetchArticleList = async (
     params,
   });
 };
+
+export const fetchArticles = async () => {
+  const response = await instance.get("/articles", {
+    params: {
+      page: 1,
+      pageSize: 100,
+      orderBy: "recent",
+    },
+  });
+  return response.data.list;
+};
