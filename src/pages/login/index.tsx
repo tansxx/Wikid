@@ -1,4 +1,5 @@
 import LoginForm from "@/components/AuthForm/LoginForm";
+
 import { useAuthStore } from "@/stores/authStore";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -15,7 +16,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen -mt-[80px] Mobile:px-5 bg-background">
+      <div className="flex items-center justify-center min-h-screen -mt-[100px] Mobile:px-5 bg-background px-4">
         <div className="w-full max-w-md">
           <h2 className="text-text2xlSemibold mb-[50px] text-center text-gray500">
             로그인

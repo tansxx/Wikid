@@ -30,13 +30,15 @@ export default function MyPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8">
-      <h2 className="text-text2xlSemibold mb-[50px] text-center text-gray500">
-        계정설정
-      </h2>
-      <PasswordChangeForm />
-      <hr className="w-full max-w-md my-10 border-gray-300" />
-      <QuestionCreateForm />
-    </div>
+    <>
+      <div className="flex flex-col items-center justify-center min-h-screen px-4 -mt-[80px]">
+        <h2 className="text-text2xlSemibold mb-[50px] text-center text-gray500">
+          계정설정
+        </h2>
+        <PasswordChangeForm />
+        <hr className="w-full max-w-md my-10 border-gray-300" />
+        <QuestionCreateForm />
+      </div>
+    </>
   );
 }

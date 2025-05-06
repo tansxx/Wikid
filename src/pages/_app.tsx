@@ -10,7 +10,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Navbar isLoggedIn={true} />
+      <Navbar />
       <Component {...pageProps} />
     </ThemeProvider>
   );
