@@ -21,7 +21,7 @@ export const Title = styled.div`
   color: ${color("gray500")};
   font: ${font("text2lgSemibold")};
   justify-content: flex-start;
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 export const Message = styled.div`
