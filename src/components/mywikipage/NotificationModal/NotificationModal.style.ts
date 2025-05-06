@@ -1,50 +1,92 @@
 import styled from "styled-components";
 
-export const ModalWrapper = styled.div`
-  display: flex;
-  padding: 24px 20px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  border-radius: 10px;
-  border: 1px solid #cvc9cf;
-  background: #ced8d5;
-  box-shadow: 0px 2px 8px 0px rgba(120, 116, 134, 0.25);
+export const ModalContainer = styled.div`
+  background: #f6fdf7;
+  border-radius: 12px;
+  padding: 24px 24px 16px;
+  width: 360px;
+  max-height: 80vh;
+  overflow-y: auto;
 `;
 
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  align-self: stretch;
+  margin-bottom: 16px;
 `;
 
-export const span = styled.div`
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  color: #1b1b1b;
+export const Title = styled.h2`
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
 `;
 
-export const CloseButtonStyled = styled.div`
-  width: 24px;
-  height: 24px;
-  color: black;
+export const CloseButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+`;
+
+export const Tab = styled.button<{ active: boolean }>`
+  border: none;
+  background: none;
+  font-weight: ${({ active }) => (active ? "700" : "400")};
+  color: ${({ active }) => (active ? "#000" : "#888")};
+  font-size: 14px;
+  cursor: pointer;
 `;
 
 export const NotificationList = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+  gap: 12px;
 `;
 
-export const NotificationItem = styled.div`
-  display: flex;
-  width: 100%;
-  max-width: 328px;
-  align-items: center;
-  gap: 4px;
+export const NotificationItem = styled.div<{ read: boolean }>`
+  position; relative;
+  background: white;
+  border-radius: 10px;
+  padding: 16px 16px 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+`;
+
+export const ItemText = styled.div`
+  font-size: 15px;
+  color: #222;
+  margin-bottom: 4px;
+`;
+
+export const ItemTime = styled.div`
+  font-size: 12px;
+  color: #999;
+`;
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  font-size; 14px;
+  border: none;
+  background: none;
+  color: #999;
+  cursor: pointer;
+  `;
+
+export const UnreadDot = styled.span`
+  position: absolute;
+  left: 10px;
+  top: 14px;
+  width: 8px;
+  height: 8px;
+  background-color: #2d8cf0;
+  border-radius: 50%;
 `;

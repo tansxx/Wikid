@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./CloseButton.module.css";
+import React from "react";
 import { FC } from "react";
 
 type CloseButtonProps = {
