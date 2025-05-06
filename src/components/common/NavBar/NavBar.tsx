@@ -1,119 +1,166 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useRef, useEffect } from 'react';
+
+import { useAuthStore } from "@/stores/authStore";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState, useRef, useEffect } from "react";
 
 interface NavbarProps {
-  isLoggedIn: boolean;
   profileImageUrl?: string;
 }
 
-export default function Navbar({ isLoggedIn, profileImageUrl }: NavbarProps) {
+export default function Navbar({ profileImageUrl }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-
+  const { isLoggedIn, logout } = useAuthStore();
+  const router = useRouter();
   const profileRef = useRef<HTMLDivElement>(null);
 
-  
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
         setProfileOpen(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   return (
-    <nav className="w-full bg-white border-b shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between relative">
-      
-        <div className="flex items-center space-x-4">
+    <nav className="w-full bg-white border-b shadow-sm sticky top-0 z-50 h-[60px] md:h-[80px]">
+      <div className="w-full px-[20px] py-3 flex items-center justify-between relative drop-shadow-md md:h-[80px] md:px-[80px]">
+        <div className="flex items-center space-x-10">
           <Link href="/">
-            <Image src="/assets/images/logo.png" alt="로고" width={60} height={60} />
+            <Image
+              src="/assets/icons/logo.svg"
+              alt="로고"
+              width={107}
+              height={30}
+            />
           </Link>
 
-         
-          <div className="hidden md:flex space-x-4">
+          <div className="hidden md:flex space-x-10">
             <Link href="/wiki">
-              <span className="text-gray-800 text-sm font-medium hover:text-[#4CBFA4]">위키목록</span>
+              <span className="text-gray400 text-sm  ">위키목록</span>
             </Link>
             <Link href="/board">
-              <span className="text-gray-800 text-sm font-medium hover:text-[#4CBFA4]">자유게시판</span>
+              <span className="text-gray400 text-sm ">자유게시판</span>
+
             </Link>
           </div>
         </div>
 
-      
+
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (
             <>
-              <Link href="/notifications">
-                <Image src="/assets/images/type=alarm_32_32.png" alt="알람" width={24} height={24} />
+              <Link href="/">
+                <Image
+                  src="/assets/icons/ic_alarmLarge.svg"
+                  alt="알람"
+                  width={30}
+                  height={30}
+                />
               </Link>
 
-             
-              <div className="relative" ref={profileRef}>
+              <div className="relative top-1" ref={profileRef}>
                 <button onClick={() => setProfileOpen((prev) => !prev)}>
                   <Image
-                    src={profileImageUrl || "/assets/images/type=profile.png"}
+                    src={profileImageUrl || "/assets/icons/ic_profile.svg"}
                     alt="프로필"
-                    width={32}
-                    height={32}
-                    className="rounded-full"
-                  />
+                    width={30}
+                    height={30} />
                 </button>
 
                 {profileOpen && (
-                  <div className="absolute left-0 top-full mt-2 w-40 bg-white shadow-lg rounded-md border z-50 flex flex-col items-start p-2 space-y-2">
-                    <Link href="/settings" className="text-sm text-gray-700 hover:text-[#4CBFA4] w-full">
+
+                  <div className="absolute  top-full mt-2  w-20 bg-white shadow-lg rounded-md border  flex flex-col  p-2 space-y-2">
+                    <Link
+                      href="/mypage"
+                      className="text-sm text-gray-700 w-full"
+                    >
                       계정 설정
                     </Link>
-                    <Link href="/my-wiki" className="text-sm text-gray-700 hover:text-[#4CBFA4] w-full">
+                    <Link
+                      href="/my-wiki"
+                      className="text-sm text-gray-700 w-full"
+                    >
                       내 위키
                     </Link>
-                    <Link href="/logout" className="text-sm text-gray-500 hover:text-gray-700 w-full">
+                    <div
+                      onClick={handleLogout}
+                      className="text-sm  text-text-gray-700 w-full"
+                    >
                       로그아웃
-                    </Link>
+                    </div>
+
                   </div>
                 )}
               </div>
             </>
           ) : (
-            <Link href="/login">
-              <button className="bg-[#4CBFA4] text-white px-4 py-2 rounded-md hover:opacity-90">
-                로그인
-              </button>
+
+            <Link href="/login" className=" text-gray400 text-sm">
+              로그인
+
             </Link>
           )}
         </div>
 
-   
-        <div className="md:hidden relative">
+feature/login-ui
+        <div className="md:hidden relative top-1">
           <button onClick={() => setMenuOpen((prev) => !prev)}>
-            <Image src="/assets/images/type=menu.png" alt="메뉴" width={24} height={24} />
+            <Image
+              src="/assets/icons/ic_menu.svg"
+              alt="메뉴"
+              width={25}
+              height={25}
+            />
           </button>
 
           {menuOpen && (
-            <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md border z-50 flex flex-col items-start p-2 space-y-2">
-              <Link href="/wiki" className="text-sm text-gray-700 hover:text-[#4CBFA4] w-full">
+            <div className="absolute right-0 mt-2 w-20 bg-white shadow-lg border z-50 flex rounded-md flex-col items-center p-2 space-y-2">
+              <Link href="/wiki" className="text-sm text-gray-700  w-full">
                 위키목록
               </Link>
-              <Link href="/board" className="text-sm text-gray-700 hover:text-[#4CBFA4] w-full">
+              <Link href="/board" className="text-sm text-gray-700 w-full">
+
                 자유게시판
               </Link>
 
               {isLoggedIn ? (
                 <>
-                  <Link href="/notifications" className="text-sm text-gray-700 hover:text-[#4CBFA4] w-full">
+
+                  <Link
+                    href="/notifications"
+                    className="text-sm text-gray-700 w-full"
+                  >
                     알림
                   </Link>
-                  <Link href="/profile" className="text-sm text-gray-700 hover:text-[#4CBFA4] w-full">
+                  <Link
+                    href="/profile"
+                    className="text-sm text-gray-700  w-full"
+                  >
                     마이페이지
+                  </Link>
+                  <Link
+                    href="/"
+                    className="text-sm text-gray-700  w-full"
+                    onClick={handleLogout}
+                  >
+                    로그아웃
                   </Link>
                 </>
               ) : (
-                <Link href="/login" className="text-sm text-gray-700 hover:text-[#4CBFA4] w-full">
+                <Link href="/login" className="text-sm text-gray-700  w-full">
+
                   로그인
                 </Link>
               )}
