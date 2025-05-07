@@ -21,21 +21,35 @@
   },
   "homepage": "https://github.com/codeit-fe-14-project2-team5/Wikid#readme",
   "dependencies": {
+    "@tiptap/extension-image": "^2.11.9",
+    "@tiptap/extension-link": "^2.11.9",
+    "@tiptap/extension-text-align": "^2.11.9",
+    "@tiptap/extension-underline": "^2.11.9",
+    "@tiptap/react": "^2.11.9",
+    "@tiptap/starter-kit": "^2.11.9",
     "axios": "^1.8.4",
+    "lucide-react": "^0.503.0",
     "next": "^15.3.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.1",
+    "react-toastify": "^11.0.5",
     "styled-components": "^6.1.17",
-    "zod": "^3.24.3"
+    "zod": "^3.24.3",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/cli": "^4.1.4",
     "@types/node": "^22.14.1",
     "@types/react": "^19.1.2",
     "@types/styled-components": "^5.1.34",
+    "autoprefixer": "^10.4.21",
     "babel-plugin-styled-components": "^2.1.4",
     "eslint": "9.25.1",
     "eslint-config-next": "15.3.1",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3"
   }
 }
