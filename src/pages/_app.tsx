@@ -5,6 +5,7 @@ import GlobalStyle from "@/styles/GlobalStyle";
 import { theme } from "@/styles/theme";
 import "@/styles/tailwind.css";
 import Navbar from "@/components/common/NavBar/NavBar";
+import { Footer } from "@/components/myWikiPage/InactivityModal/InactivityModal.style";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

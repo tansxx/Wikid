@@ -25,7 +25,7 @@ export default function ProfileBar({
     <Container>
       <ProfileCard>
         <WikiAvatar
-          src={profile.image || "/assets/images/img_profile.png"}
+          src={profile.image || "/assets/icons/ic_profile.svg"}
           isEditMode={isEditMode}
         />
         <ProfileForm

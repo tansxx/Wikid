@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import FormButton from "../AuthForm/FormButton";
 import FormInput from "../AuthForm/FormInput";
 import { createQuestionAPI } from "@/apis/authAPI";
+import { useAuthStore } from "@/stores/authStore";
 
 export default function QuestionCreateForm() {
   const {

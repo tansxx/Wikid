@@ -3,32 +3,20 @@ import { persist } from "zustand/middleware";
 
 interface AuthState {
   isLoggedIn: boolean;
-  token: string | null;
+  accessToken: string | null;
   isInitialized: boolean;
-  login: (token: string) => void;
+  login: () => void;
   logout: () => void;
+  setAccessToken: (token: string) => void;
+  setInitialized: (value: boolean) => void;
 }
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      isLoggedIn: false,
-      token: null,
-      isInitialized: false,
-      login: (token) => {
-        set({ isLoggedIn: true, token });
-      },
-      logout: () => {
-        set({ isLoggedIn: false, token: null });
-      },
-    }),
-    {
-      name: "auth-storage",
-      onRehydrateStorage: () => (state) => {
-        if (state) {
-          state.isInitialized = true;
-        }
-      },
-    }
-  )
-);
+export const useAuthStore = create<AuthState>((set) => ({
+  isLoggedIn: false,
+  accessToken: null,
+  isInitialized: true,
+  login: () => set({ isLoggedIn: true }),
+  logout: () => set({ isLoggedIn: false, accessToken: null }),
+  setAccessToken: (token) => set({ accessToken: token }),
+  setInitialized: (value) => set({ isInitialized: value }),
+}));

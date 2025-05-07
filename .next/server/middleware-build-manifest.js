@@ -24,19 +24,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
-<<<<<<< HEAD
-=======
     ],
-    "/login": [
+    "/wiki/[code]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/login.js"
-    ],
-    "/signup": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/signup.js"
->>>>>>> 21d199dc6105ba61bf73e5ce135664014bcc2975
+      "static/chunks/pages/wiki/[code].js"
     ]
   },
   "ampFirstPages": []

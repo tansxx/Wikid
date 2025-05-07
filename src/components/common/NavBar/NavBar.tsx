@@ -1,3 +1,4 @@
+import { useProfileCode } from "@/hooks/myWiki/useProfileCode";
 import { useAuthStore } from "@/stores/authStore";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +13,8 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const { isLoggedIn, logout } = useAuthStore();
+  const code = useProfileCode();
+
   const router = useRouter();
   const profileRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +88,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
                       계정 설정
                     </Link>
                     <Link
-                      href="/my-wiki"
+                      href={`/wiki/${code}`}
                       className="text-sm text-gray-700 w-full"
                     >
                       내 위키

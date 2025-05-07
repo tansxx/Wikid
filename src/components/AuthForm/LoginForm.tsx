@@ -20,31 +20,28 @@ const LoginForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { login, isInitialized } = useAuthStore();
+  const { login, isInitialized, setAccessToken } = useAuthStore();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    if (!mounted || !isInitialized) return;
+    // if (!mounted || !isInitialized) return;
+    if (!mounted) return;
 
     try {
       setIsLoading(true);
 
       const response = await loginAPI(data);
+      const accessToken = response.accessToken;
 
-      login(response.accessToken);
-      const currentAuthState = useAuthStore.getState();
-      console.log("현재 상태:", {
-        isLoggedIn: currentAuthState.isLoggedIn,
-        token: currentAuthState.token,
-      });
-      alert("로그인 성공!");
+      setAccessToken(accessToken);
+      login();
+
       router.push("/");
     } catch (error) {
-      //   console.error("로그인 실패:", error);
-      alert("로그인 실패했습니다.");
+      console.error("로그인 에러:", error);
     } finally {
       setIsLoading(false);
     }
