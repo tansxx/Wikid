@@ -8,7 +8,7 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
-  const token = useAuthStore.getState().token; // Zustand에서 직접 가져옴
+  const token = useAuthStore.getState().accessToken; // Zustand에서 직접 가져옴
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

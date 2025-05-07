@@ -18,7 +18,6 @@ export interface ProfileInfo {
   content?: string;
   securityQuestion?: string;
   updatedAt: string;
-  teamId: string;
 }
 
 interface UseProfileInfoResult {
