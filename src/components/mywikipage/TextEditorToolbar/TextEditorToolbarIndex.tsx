@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <>
-      <TextEditorToolbar editor={editor} />
+      <TextEditorToolbar editor={editor} userName="홍길동" />
       <EditorContent editor={editor} />
     </>
   );

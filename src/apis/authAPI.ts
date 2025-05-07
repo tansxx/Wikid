@@ -11,7 +11,6 @@ export async function signupAPI(data: {
   name: string;
   passwordConfirmation?: string;
 }) {
-  console.log("✅ signupData:", data);
   try {
     const response = await axiosInstance.post("/auth/signUp", data);
     return response.data;
@@ -29,10 +28,10 @@ export async function changePasswordAPI(data: {
   return response.data;
 }
 
-export async function createQuestionAPI(data: {
-  securityQuestion: string;
-  securityAnswer: string;
-}) {
-  const response = await axiosInstance.post("/profiles", data);
-  return response.data;
-}
+export const createQuestionAPI = async (question: string, answer: string) => {
+  const res = await axiosInstance.post(`/profiles`, {
+    securityQuestion: question,
+    securityAnswer: answer,
+  });
+  return res.data;
+};

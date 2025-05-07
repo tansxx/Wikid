@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axiosInstance from "@/apis/axiosInstance";
 
 export interface ProfileInfo {
@@ -24,6 +24,7 @@ interface UseProfileInfoResult {
   profile: ProfileInfo | null;
   loading: boolean;
   error: string | null;
+  refetch: () => Promise<void>;
 }
 
 export function useProfileInfo(code: string): UseProfileInfoResult {
@@ -31,25 +32,26 @@ export function useProfileInfo(code: string): UseProfileInfoResult {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const fetchProfile = useCallback(async () => {
     if (!code) return;
 
-    const fetchProfile = async () => {
-      try {
-        const res = await axiosInstance.get<ProfileInfo>(`/profiles/${code}`);
-        setProfile(res.data);
-      } catch (err: any) {
-        setError(
-          err?.response?.data?.message ||
-            "프로필 정보를 불러오는 데 실패했습니다."
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProfile();
+    setLoading(true);
+    try {
+      const res = await axiosInstance.get<ProfileInfo>(`/profiles/${code}`);
+      setProfile(res.data);
+    } catch (err: any) {
+      setError(
+        err?.response?.data?.message ||
+          "프로필 정보를 불러오는 데 실패했습니다."
+      );
+    } finally {
+      setLoading(false);
+    }
   }, [code]);
 
-  return { profile, loading, error };
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
+
+  return { profile, loading, error, refetch: fetchProfile };
 }

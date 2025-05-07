@@ -4,7 +4,6 @@ import {
   Bold,
   Italic,
   Underline,
-  Heading1,
   List,
   ListOrdered,
   AlignLeft,
@@ -17,12 +16,12 @@ import {
 
 interface TextEditorToolbarProps {
   editor: Editor | null;
-  userName: string;
+  userName?: string;
 }
 
 export default function TextEditorToolbar({
   editor,
-  userName,
+  userName = "사용자",
 }: TextEditorToolbarProps) {
   if (!editor) return null;
 
@@ -33,27 +32,27 @@ export default function TextEditorToolbar({
 
   return (
     <S.BarWrapper>
-      <S.LeftLabel>{userName}</S.LeftLabel>
+      <S.LeftLabel>{userName}의 위키 수정 중</S.LeftLabel>
 
       <S.RightControls>
         <S.ControlGroup>
           <S.ControlButton
             onClick={() => editor.chain().focus().toggleBold().run()}
-            active={editor.isActive("bold")}
+            $active={editor.isActive("bold")}
           >
             <Bold size={16} />
           </S.ControlButton>
 
           <S.ControlButton
             onClick={() => editor.chain().focus().toggleItalic().run()}
-            active={editor.isActive("italic")}
+            $active={editor.isActive("italic")}
           >
             <Italic size={16} />
           </S.ControlButton>
 
           <S.ControlButton
             onClick={() => editor.chain().focus().toggleUnderline().run()}
-            active={editor.isActive("underline")}
+            $active={editor.isActive("underline")}
           >
             <Underline size={16} />
           </S.ControlButton>
@@ -61,11 +60,9 @@ export default function TextEditorToolbar({
 
         <S.Divider />
 
-        {/* 제목 드롭다운 */}
         <S.HeadingSelect
           onChange={(e) => handleHeadingChange(e.target.value)}
           defaultValue=""
-          style={{ padding: "4px 8px", borderRadius: 4 }}
         >
           <option value="" disabled>
             제목
@@ -77,14 +74,14 @@ export default function TextEditorToolbar({
 
         <S.ControlButton
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          active={editor.isActive("bulletList")}
+          $active={editor.isActive("bulletList")}
         >
           <List size={16} />
         </S.ControlButton>
 
         <S.ControlButton
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          active={editor.isActive("orderedList")}
+          $active={editor.isActive("orderedList")}
         >
           <ListOrdered size={16} />
         </S.ControlButton>
@@ -122,11 +119,11 @@ export default function TextEditorToolbar({
           <Image size={16} />
         </S.ControlButton>
 
-        <S.ControlButton>
+        <S.ControlButton disabled>
           <Video size={16} />
         </S.ControlButton>
 
-        <S.ControlButton>
+        <S.ControlButton disabled>
           <Link size={16} />
         </S.ControlButton>
       </S.RightControls>
