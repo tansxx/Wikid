@@ -14,6 +14,8 @@ export default function WikiPage() {
   const router = useRouter();
   const { code } = router.query;
 
+  console.log("code 값 확인:", code);
+
   const { user, loading: userLoading } = useUserInfo();
   const { profile, loading: profileLoading } = useProfileInfo(
     typeof code === "string" ? code : ""
@@ -48,7 +50,9 @@ export default function WikiPage() {
         <S.UserName>{user.name}</S.UserName>
         <S.ButtonRow>
           <PrimaryButton label="위키 참여하기" onClick={handleOpenModal} />
-          <LinkButton label="링크" link={`https://wikied.com/wiki/${code}`} />
+          {typeof code === "string" && (
+            <LinkButton label="링크" link={`https://wikied.com/wiki/${code}`} />
+          )}
         </S.ButtonRow>
         {profile.content ? (
           <S.Article>
