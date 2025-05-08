@@ -15,7 +15,10 @@ import ToastSelect from '@/components/common/ToastSelect';
 import { useAuthStore } from '@/stores/authStore';
 import { useStore } from '@/stores/useStore';
 import { OTHER_TYPE_ERROR_TEXT } from '@/constants/otherTypeErrorText';
+import MetaTag from '@/components/common/MetaTag';
 import 'react-toastify/dist/ReactToastify.css';
+import OpenGraphTag from '@/components/common/MetaTag/OpenGraphTag';
+
 
 const ReactQuillWrapper = dynamic(import('@/components/AddBoard/QuillEditor'), {
   ssr: false,
