@@ -26,13 +26,27 @@ export default function TextEditorToolbar({
   if (!editor) return null;
 
   const handleHeadingChange = (level: string) => {
+    if (level === "") return;
+
     const headingLevel = parseInt(level) as 1 | 2 | 3;
-    editor.chain().focus().toggleHeading({ level: headingLevel }).run();
+
+    if (editor.isActive("heading", { level: headingLevel })) {
+      editor.chain().focus().setParagraph().run();
+    } else {
+      editor.chain().focus().toggleHeading({ level: headingLevel }).run();
+    }
+  };
+
+  const getActiveHeadingLevel = () => {
+    if (editor.isActive("heading", { level: 1 })) return "1";
+    if (editor.isActive("heading", { level: 2 })) return "2";
+    if (editor.isActive("heading", { level: 3 })) return "3";
+    return "";
   };
 
   return (
     <S.BarWrapper>
-      <S.LeftLabel>{userName}의 위키 수정 중</S.LeftLabel>
+      <S.LeftLabel>{userName}</S.LeftLabel>
 
       <S.RightControls>
         <S.ControlGroup>
@@ -62,7 +76,7 @@ export default function TextEditorToolbar({
 
         <S.HeadingSelect
           onChange={(e) => handleHeadingChange(e.target.value)}
-          defaultValue=""
+          value={getActiveHeadingLevel()}
         >
           <option value="" disabled>
             제목
@@ -90,18 +104,21 @@ export default function TextEditorToolbar({
 
         <S.ControlButton
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
+          $active={editor.isActive({ textAlign: "left" })}
         >
           <AlignLeft size={16} />
         </S.ControlButton>
 
         <S.ControlButton
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
+          $active={editor.isActive({ textAlign: "center" })}
         >
           <AlignCenter size={16} />
         </S.ControlButton>
 
         <S.ControlButton
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
+          $active={editor.isActive({ textAlign: "right" })}
         >
           <AlignRight size={16} />
         </S.ControlButton>
