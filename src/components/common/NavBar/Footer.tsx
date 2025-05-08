@@ -16,13 +16,13 @@ function Footer() {
         </span>
       </div>
       <div className="flex flex-row  gap-[15px]">
-        <span className=" text-white sm:text-textmdMedium text-[9px]">
+        <span className=" text-white sm:text-textmdMedium text-[12px]">
           서비스 이용약관
         </span>
-        <span className=" text-white sm:text-textmdMedium text-[9px]">
+        <span className=" text-white sm:text-textmdMedium text-[12px]">
           개인정보 취급방침
         </span>
-        <span className=" text-white sm:text-textmdMedium text-[9px]">
+        <span className=" text-white sm:text-textmdMedium text-[12px]">
           전자금융거래 기본약관
         </span>
       </div>

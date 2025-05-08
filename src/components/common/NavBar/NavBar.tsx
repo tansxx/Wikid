@@ -1,4 +1,4 @@
-import { useProfileCode } from "@/hooks/myWiki/useProfileCode";
+import { useProfileCode } from "@/hooks/mywiki/useProfileCode";
 import { useAuthStore } from "@/stores/authStore";
 import Image from "next/image";
 import Link from "next/link";
@@ -93,12 +93,13 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
                     >
                       내 위키
                     </Link>
-                    <div
+                    <Link
+                      href="/"
                       onClick={handleLogout}
                       className="text-sm  text-text-gray-700 w-full"
                     >
                       로그아웃
-                    </div>
+                    </Link>
                   </div>
                 )}
               </div>
@@ -109,7 +110,6 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
             </Link>
           )}
         </div>
-        feature/login-ui
         <div className="md:hidden relative top-1">
           <button onClick={() => setMenuOpen((prev) => !prev)}>
             <Image
