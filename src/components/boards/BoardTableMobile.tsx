@@ -46,39 +46,47 @@ export default function BoardTable({
           </div>
         ) : (
           <>
-            <table className="w-full table-auto border-t border-[#E4E5F0] mb-10 text-left text-[#474D66] text-sm hidden md:table">
-              <thead className="text-[#8F95B2]">
-                <tr className="border-b border-[#E4E5F0]">
-                  <th className="w-[10%] py-3">번호</th>
-                  <th className="w-[45%]">제목</th>
-                  <th className="w-[15%]">작성자</th>
-                  <th className="w-[15%]">좋아요</th>
-                  <th className="w-[15%]">날짜</th>
-                </tr>
-              </thead>
-              <tbody>
-                {posts.map((post) => (
-                  <tr key={post.id} className="border-b border-[#E4E5F0]">
-                    <td className="py-3">{post.id}</td>
-                    <td className="py-3">
-                      <Link
-                        href={`/posts/${post.writer.id}`}
-                        className="text-blue-600 hover:underline"
-                      >
-                        <span className="text-[#474D66]">{post.title}</span>
+            <ul className="flex justify-between py-[12px] border-y border-[#E4E5F0] text-[#8F95B2] hidden md:flex">
+              <li className="w-[10%]">번호</li>
+              <li className="w-[45%]">제목</li>
+              <li className="w-[15%]">작성자</li>
+              <li className="w-[15%]">좋아요</li>
+              <li className="w-[15%]">날짜</li>
+            </ul>
+            <ul className="mb-[30px] md:mb-[60px] text-[#474D66]">
+              {posts.map((post) => (
+                <li
+                  key={post.writer.id}
+                  className="py-[12px] border-b border-[#E4E5F0]"
+                >
+                  <dl className="flex relative flex-wrap">
+                    <dd className="w-[10%] hidden md:block">{post.id}</dd>
+                    <dd className="w-full md:w-[45%] block">
+                      <Link href={`/posts/${post.writer.id}`}>
+                        {post.title}
                       </Link>
-                    </td>
-                    <td className="py-3">{post.writer.name}</td>
-                    <td className="py-3">{post.likeCount}</td>
-                    <td className="py-3">
+                    </dd>
+                    <dd className="w-inline md:w-[15%] text-[#8F95B2] md:text-[#474D66]">
+                      {post.writer.name}
+                    </dd>
+                    <dd className="w-[15%] ml-[16px] text-[#8F95B2] md:text-[#474D66]">
                       {format(parseISO(post.createdAt), 'yyyy.MM.dd')}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </dd>
+                    <dd className="w-[15%] absolute right-0 bottom-0 text-[#8F95B2] md:text-[#474D66]">
+                      <Image
+                        src="/assets/icons/ic_heart.svg"
+                        alt="좋아요"
+                        width={16}
+                        height={16}
+                        className="inline-block md:hidden"
+                      />
+                      <span>{post.likeCount}</span>
+                    </dd>
+                  </dl>
+                </li>
+              ))}
+            </ul>
 
-            {/* 페이징은 결과가 있을 때만 표시 */}
             <nav
               aria-label="Pagination"
               className="flex -space-x-px rounded-md shadow-xs gap-[11px] justify-center"

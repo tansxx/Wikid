@@ -1,25 +1,33 @@
-import React,{ useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Dropdown from '@/components/boards/DropDownMenu';
-import { log } from "node:console";
+import { ArticleQueryParam } from '@/apis/article';
 
-export default function BoardSearchBar({ query, setQuery } ) {
-  const [isOpen, setOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("최신순");
-  const inputRef = useRef(null);
+interface BoardSearchBarProps {
+  query: ArticleQueryParam;
+  setQuery: (value: ArticleQueryParam) => void;
+}
 
-  const onClickDropDown = (orderBy => {
+export default function BoardSearchBar({
+  query,
+  setQuery,
+}: BoardSearchBarProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState('최신순');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const onClickDropDown = (orderBy) => {
     const displayWord = orderBy === 'like' ? '좋아요순' : '최신순';
     setSelectedItem(displayWord);
-    setOpen(false);
-    setQuery({...query, orderBy :orderBy});
-  });
+    setIsOpen(false);
+    setQuery({ ...query, orderBy });
+  };
 
-  const onChangeInput = (() => {
-    setQuery({...query, keyword : inputRef.current.value});
-  });
-
-
+  const handleKeywordChange = () => {
+    if (inputRef.current) {
+      setQuery({ ...query, keyword: inputRef.current.value });
+    }
+  };
 
   return (
     <>
@@ -28,7 +36,13 @@ export default function BoardSearchBar({ query, setQuery } ) {
           <label htmlFor="search" className="sr-only">
             search
           </label>
-          <Image src="/assets/icons/ic_search.svg" alt="검색" width={22} height={22} className="inline-block absolute left-[20px] top-1/2 -translate-y-1/2" />
+          <Image
+            src="/assets/icons/ic_search.svg"
+            alt="검색"
+            width={22}
+            height={22}
+            className="inline-block absolute left-[20px] top-1/2 -translate-y-1/2"
+          />
 
           <input
             id="search"
@@ -40,15 +54,39 @@ export default function BoardSearchBar({ query, setQuery } ) {
           />
         </div>
 
-        <button type="button" onClick={onChangeInput} className="w-[80px] h-[45px] px-4 py-2 bg-[#4CBFA4] text-white rounded-md leading-[24px] text-[14px] font-semibold">
+        <button
+          type="button"
+          onClick={handleKeywordChange}
+          className="w-[80px] h-[45px] px-4 py-2 bg-[#4CBFA4] text-white rounded-md leading-[24px] text-[14px] font-semibold"
+        >
           검색
         </button>
 
-        <Dropdown isOpen={isOpen} onToggle ={()=> {setOpen(!isOpen)}} selectedLabel={selectedItem}>
-          <button onClick={() => { onClickDropDown('recent')}} className="w-full px-4 py-3 rounded-md text-left text-[14px] leading-[24px] text-[#474D66]">최신순</button>
-          <button onClick={() => {  onClickDropDown('like')}} className="w-full px-4 py-3 rounded-md text-left text-[14px] leading-[24px] text-[#474D66]">좋아요순</button>
+        <Dropdown
+          isOpen={isOpen}
+          onToggle={() => {
+            setIsOpen((prev) => !prev);
+          }}
+          selectedLabel={selectedItem}
+        >
+          <button
+            onClick={() => {
+              onClickDropDown('recent');
+            }}
+            className="w-full px-4 py-3 rounded-md text-left text-[14px] leading-[24px] text-[#474D66]"
+          >
+            최신순
+          </button>
+          <button
+            onClick={() => {
+              onClickDropDown('like');
+            }}
+            className="w-full px-4 py-3 rounded-md text-left text-[14px] leading-[24px] text-[#474D66]"
+          >
+            좋아요순
+          </button>
         </Dropdown>
       </div>
     </>
-  )
+  );
 }
