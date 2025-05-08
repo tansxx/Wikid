@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./NotificationModal.style";
-import axios from "axios";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+import axiosInstance from "@/apis/axiosInstance";
 
 interface Notification {
   id: number;
@@ -20,7 +18,7 @@ export default function NotificationModal({
 
   const fetchNotifications = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/notifications`, {
+      const res = await axiosInstance.get("/notifications", {
         params: { page: 1, pageSize: 100 },
       });
       setNotifications(res.data.list);
@@ -31,7 +29,7 @@ export default function NotificationModal({
 
   const deleteNotification = async (id: number) => {
     try {
-      await axios.delete(`${API_BASE_URL}/notifications/${id}`);
+      await axiosInstance.delete(`/notifications/${id}`);
       setNotifications((prev) => prev.filter((n) => n.id !== id));
     } catch (err) {
       console.error("알림 삭제 실패:", err);

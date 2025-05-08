@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useRef, useEffect } from "react";
+import NotificationModal from "@/components/myWikiPage/NotificationModal/NotificationModal";
 
 interface NavbarProps {
   profileImageUrl?: string;
@@ -13,6 +14,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const { isLoggedIn, logout } = useAuthStore();
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const code = useProfileCode();
 
   const router = useRouter();
@@ -60,14 +62,14 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (
             <>
-              <Link href="/">
+              <button onClick={() => setIsNotificationOpen(true)}>
                 <Image
                   src="/assets/icons/ic_alarmLarge.svg"
                   alt="알람"
                   width={30}
                   height={30}
                 />
-              </Link>
+              </button>
 
               <div className="relative top-1" ref={profileRef}>
                 <button onClick={() => setProfileOpen((prev) => !prev)}>
@@ -131,12 +133,10 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
 
               {isLoggedIn ? (
                 <>
-                  <Link
-                    href="/notifications"
-                    className="text-sm text-gray-700 w-full"
-                  >
-                    알림
-                  </Link>
+                  <button onClick={() => setProfileOpen((prev) => !prev)}>
+                    href="/notifications" className="text-sm text-gray-700
+                    w-full" 알림
+                  </button>
                   <Link
                     href="/profile"
                     className="text-sm text-gray-700  w-full"
@@ -160,6 +160,11 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
           )}
         </div>
       </div>
+      {isNotificationOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <NotificationModal onClose={() => setIsNotificationOpen(false)} />
+        </div>
+      )}
     </nav>
   );
 }
