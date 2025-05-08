@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Dropdown from '@/components/boards/DropDownMenu';
-import { ArticleQueryParam } from '@/apis/article';
+import { ArticleQueryParam } from '@/apis/articleList';
 
 interface BoardSearchBarProps {
   query: ArticleQueryParam;

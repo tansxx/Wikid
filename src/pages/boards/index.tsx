@@ -3,7 +3,7 @@ import BestPosts from 'components/boards/BestPosts';
 import BoardSearchBar from 'components/boards/BoardSearchBar';
 import BoardTable from 'components/boards/BoardTable';
 import BoardTableMobile from 'components/boards/BoardTableMobile';
-import { getArticleList, ArticleQueryParam } from '@/apis/article';
+import { getArticleList, ArticleQueryParam } from '@/apis/articleList';
 
 export interface postType {
   updatedAt: string;

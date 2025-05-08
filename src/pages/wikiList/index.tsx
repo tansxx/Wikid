@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import WikiSearchBar from 'components/wikiList/WikiSearchBar';
 import WikiSearchList from 'components/wikiList/WikiSearchList';
-import { getProfileList, ProfileQueryParam } from '@/apis/profile';
+import { getProfileList, ProfileQueryParam } from '@/apis/profileList';
 
 export interface ProfileListResponse {
   list: ProfileType[];

@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import Image from 'next/image';
-import { ProfileQueryParam } from '@/apis/profile';
+import { ProfileQueryParam } from '@/apis/profileList';
 
 interface ProfileSearchBarProps {
   query: ProfileQueryParam;

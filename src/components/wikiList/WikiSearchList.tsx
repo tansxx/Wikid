@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import IcLink from '@/assets/icons/ic_link.svg';
 import { ProfileType } from '@/pages/wikiList';
-import { ProfileQueryParam } from '@/apis/profile';
+import { ProfileQueryParam } from '@/apis/profileList';
 
 interface WikiSearchListProps {
   profileInfo: ProfileType[];
