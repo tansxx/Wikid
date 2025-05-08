@@ -9,6 +9,7 @@ interface PrimaryButtonProps {
   type?: "button" | "submit" | "reset";
   className?: string;
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 export default function PrimaryButton({
@@ -19,6 +20,7 @@ export default function PrimaryButton({
   variant = "filled-green",
   type = "button",
   disabled = false,
+  children,
 }: PrimaryButtonProps) {
   const getVariantStyle = () => {
     switch (variant) {
@@ -63,7 +65,7 @@ export default function PrimaryButton({
         ...getVariantStyle(),
       }}
     >
-      {label}
+      {children ?? label}
     </button>
   );
 }

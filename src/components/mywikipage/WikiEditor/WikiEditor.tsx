@@ -35,19 +35,23 @@ export default function WikiEditor({
   if (!editor) return null;
 
   return (
-    <S.EditorWrapper>
-      <TextEditorToolbar editor={editor} />
-      <EditorContent editor={editor} />
-      <PrimaryButton
-        onClick={() => onSubmit(editor.getHTML())}
-        disabled={disabled || !editor.getHTML().trim()}
-        variant="filled-green"
-      >
-        저장
-      </PrimaryButton>
-      <PrimaryButton onClick={onCancel} variant="outlined">
-        취소
-      </PrimaryButton>
-    </S.EditorWrapper>
+    <S.Container>
+      <S.EditorWrapper>
+        <TextEditorToolbar editor={editor} userName={userName} />
+        <EditorContent editor={editor} />
+        <S.ButtonGroup>
+          <PrimaryButton
+            onClick={() => onSubmit(editor.getHTML())}
+            disabled={disabled || !editor.getHTML().trim()}
+            variant="filled-green"
+          >
+            저장
+          </PrimaryButton>
+          <PrimaryButton onClick={onCancel} variant="outlined-green">
+            취소
+          </PrimaryButton>
+        </S.ButtonGroup>
+      </S.EditorWrapper>
+    </S.Container>
   );
 }

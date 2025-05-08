@@ -19,7 +19,7 @@ interface ProfileBarProps {
     bloodType?: string;
     nationality?: string;
   };
-  onSaveProfile?: (data: any) => void;
+  onSaveProfile?: (data: ProfileFormValues) => void;
   onChange?: (data: ProfileFormValues) => void;
 }
 
@@ -49,6 +49,7 @@ export default function ProfileBar({
           bloodType={profile.bloodType}
           nationality={profile.nationality}
           onSubmit={onSaveProfile}
+          onChange={onChange}
         />
       </ProfileCard>
     </Container>

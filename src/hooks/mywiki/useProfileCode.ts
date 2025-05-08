@@ -17,7 +17,6 @@ export function useProfileCode() {
             },
           }
         );
-        console.log("✅ API 응답 확인:", res.data);
 
         const profileCode = res.data?.profile?.code;
         if (profileCode) setCode(profileCode);
