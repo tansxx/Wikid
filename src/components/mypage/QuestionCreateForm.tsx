@@ -15,15 +15,10 @@ export default function QuestionCreateForm() {
 
   const onSubmit = async (data: any) => {
     try {
-      console.log("질문 제출됨:");
-      console.log("질문:", data.question);
-      console.log("답변:", data.answer);
       await createQuestionAPI({
         securityQuestion: data.question,
         securityAnswer: data.answer,
       });
-
-      alert("질문이 성공적으로 등록되었습니다!");
       reset();
     } catch (error: any) {
       if (
@@ -31,10 +26,9 @@ export default function QuestionCreateForm() {
         error?.response?.status === 409 ||
         error?.response?.status === 400
       ) {
-        alert("이미 질문이 등록되어 있습니다.");
+        // 서버 측 유효성 오류: 별도 처리 가능
       } else {
         console.error("질문 등록 실패:", error);
-        alert("질문 등록에 실패했습니다. 다시 시도해주세요.");
       }
     }
   };
@@ -42,7 +36,7 @@ export default function QuestionCreateForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col  w-full max-w-md"
+      className="flex flex-col w-full max-w-md"
     >
       <h3 className="text-textmdRegular text-gray500">위키 생성하기</h3>
 

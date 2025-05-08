@@ -1,4 +1,4 @@
-
+import { useProfileCode } from "@/hooks/myWiki/useProfileCode";
 import { useAuthStore } from "@/stores/authStore";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,8 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const { isLoggedIn, logout } = useAuthStore();
+  const code = useProfileCode();
+
   const router = useRouter();
   const profileRef = useRef<HTMLDivElement>(null);
 
@@ -52,12 +54,9 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
             </Link>
             <Link href="/board">
               <span className="text-gray400 text-sm ">자유게시판</span>
-
             </Link>
           </div>
         </div>
-
-
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (
             <>
@@ -76,11 +75,11 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
                     src={profileImageUrl || "/assets/icons/ic_profile.svg"}
                     alt="프로필"
                     width={30}
-                    height={30} />
+                    height={30}
+                  />
                 </button>
 
                 {profileOpen && (
-
                   <div className="absolute  top-full mt-2  w-20 bg-white shadow-lg rounded-md border  flex flex-col  p-2 space-y-2">
                     <Link
                       href="/mypage"
@@ -89,7 +88,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
                       계정 설정
                     </Link>
                     <Link
-                      href="/my-wiki"
+                      href={`/wiki/${code}`}
                       className="text-sm text-gray-700 w-full"
                     >
                       내 위키
@@ -100,21 +99,17 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
                     >
                       로그아웃
                     </div>
-
                   </div>
                 )}
               </div>
             </>
           ) : (
-
             <Link href="/login" className=" text-gray400 text-sm">
               로그인
-
             </Link>
           )}
         </div>
-
-feature/login-ui
+        feature/login-ui
         <div className="md:hidden relative top-1">
           <button onClick={() => setMenuOpen((prev) => !prev)}>
             <Image
@@ -131,13 +126,11 @@ feature/login-ui
                 위키목록
               </Link>
               <Link href="/board" className="text-sm text-gray-700 w-full">
-
                 자유게시판
               </Link>
 
               {isLoggedIn ? (
                 <>
-
                   <Link
                     href="/notifications"
                     className="text-sm text-gray-700 w-full"
@@ -160,7 +153,6 @@ feature/login-ui
                 </>
               ) : (
                 <Link href="/login" className="text-sm text-gray-700  w-full">
-
                   로그인
                 </Link>
               )}

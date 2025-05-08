@@ -1,6 +1,6 @@
 import React from "react";
 import "@/styles/GlobalStyle.ts";
-import TextEditorToolbar from "@/components/mywikipage/TextEditorToolbar/TextEditorToolbar";
+import TextEditorToolbar from "@/components/myWikiPage/TextEditorToolbar/TextEditorToolbar";
 import { useEditor, EditorContent } from "@tiptap/react";
 
 // TipTap extensions
@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <>
-      <TextEditorToolbar editor={editor} />
+      <TextEditorToolbar editor={editor} userName="홍길동" />
       <EditorContent editor={editor} />
     </>
   );

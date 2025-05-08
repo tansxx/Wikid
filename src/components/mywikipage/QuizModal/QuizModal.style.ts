@@ -1,23 +1,37 @@
-import { color, font } from "@/styles/theme";
 import styled from "styled-components";
-import PrimaryButton from "@/components/common/PrimaryButton";
+
+export const ModalWrapper = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Backdrop = styled.div`
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000; // 어둡게 깔리는 레이어
+`;
 
 export const ModalBox = styled.div`
-  width: 100%;
-  max-width: 395px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  background: ${color("gray50")};
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  z-index: 1001;
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 `;
 
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  margin-bottom: 20px;
 `;
 
 export const TopRow = styled.div`
@@ -27,106 +41,52 @@ export const TopRow = styled.div`
 `;
 
 export const LockIconWrapper = styled.div`
-  width: 42px;
-  height: 42px;
-  background-color: ${color("gray100")};
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
+  margin: 12px 0;
 `;
 
-export const Description = styled.div`
-  margin-top: 10px;
-  color: ${color("gray400")};
+export const Description = styled.p`
+  font-size: 16px;
+  font-weight: 500;
   text-align: center;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 160%;
+  color: #333;
 `;
 
 export const Content = styled.div`
   width: 100%;
-  margin-top: 40px;
-  margin-bottom: 24px;
 `;
 
-export const FormWrapper = styled.div`
-  width: 100%;
-  padding: 0 24px;
+export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const Label = styled.label`
-  font-size: 16px;
-  font-weight: bold;
-  color: #3b3b3b;
-  text-align: left;
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 500;
   margin-bottom: 8px;
 `;
 
-export const Input = styled.input<{ $isError?: boolean }>`
-  display: flex;
-  width: 355px;
-  padding: 14px 20px;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  background-color: ${({ $isError }) => ($isError ? "#fbeded" : "#f7f7fa")};
-  transition: box-shadow 0.2s ease;
-
-  box-shadow: ${({ $isError }) => ($isError ? "0 0 0 2px #D14343" : "none")};
-
-  &:focus {
-    outline: none;
-    box-shadow: ${({ $isError }) =>
-      $isError ? "0 0 0 2px #D14343" : "0 0 0 2px #cdeae3"};
-  }
-
-  &::placeholder {
-    color: ${color("gray400")};
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-
-  &:-webkit-autofill {
-    box-shadow: 0 0 0px 1000px
-      ${({ $isError }) => ($isError ? "#FBEDED" : "#f7f7fa")} inset;
-    -webkit-text-fill-color: #333;
-  }
+export const Input = styled.input<{ $isError: boolean }>`
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid ${({ $isError }) => ($isError ? "#ff5a5a" : "#ccc")};
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
 `;
 
-export const ErrorMessage = styled.div<{ $visible?: boolean }>`
-  width: 100%;
-  max-width: 355px;
+export const ErrorMessage = styled.div<{ $visible: boolean }>`
+  color: #ff5a5a;
+  font-size: 13px;
   margin-top: 8px;
-  margin-bottom: 20px;
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
+`;
+
+export const Notice = styled.p`
   font-size: 12px;
-  font-weight: 400px;
-  color: ${color("secondaryRed200")};
-  text-align: left;
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-`;
-
-export const PrimaryButtonStyled = styled(PrimaryButton)`
-  width: 100%;
-  max-width: 355px;
-`;
-
-export const Notice = styled.div`
-  color: ${color("gray400")};
   text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  color: #777;
 `;

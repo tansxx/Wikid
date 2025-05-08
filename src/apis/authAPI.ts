@@ -1,7 +1,7 @@
-import { axiosInstance } from "@/apis/axios";
+import axiosInstance from "./axiosInstance";
 
 export async function loginAPI(data: { email: string; password: string }) {
-  const response = await axiosInstance.post(`/api/14-5/auth/signIn`, data);
+  const response = await axiosInstance.post(`/auth/signIn`, data);
   return response.data;
 }
 
@@ -11,8 +11,12 @@ export async function signupAPI(data: {
   name: string;
   passwordConfirmation?: string;
 }) {
-  const response = await axiosInstance.post("/api/14-5/auth/signUp", data);
-  return response.data;
+  try {
+    const response = await axiosInstance.post("/auth/signUp", data);
+    return response.data;
+  } catch (error: any) {
+    console.error("error.response.data:", error.response?.data);
+  }
 }
 
 export async function changePasswordAPI(data: {
@@ -20,17 +24,14 @@ export async function changePasswordAPI(data: {
   password: string;
   passwordConfirmation: string;
 }) {
-  const response = await axiosInstance.patch(
-    "/api/14-5/users/me/password",
-    data
-  );
+  const response = await axiosInstance.patch("/users/me/password", data);
   return response.data;
 }
 
-export async function createQuestionAPI(data: {
-  securityQuestion: string;
-  securityAnswer: string;
-}) {
-  const response = await axiosInstance.post("/api/14-5/profiles", data);
-  return response.data;
-}
+export const createQuestionAPI = async (question: string, answer: string) => {
+  const res = await axiosInstance.post(`/profiles`, {
+    securityQuestion: question,
+    securityAnswer: answer,
+  });
+  return res.data;
+};

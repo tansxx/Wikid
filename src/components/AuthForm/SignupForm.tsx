@@ -35,7 +35,7 @@ const SignupForm = () => {
         email: data.email,
         name: data.name,
         password: data.password,
-        passwordConfirmation: data.confirmPassword,
+        passwordConfirmation: data.passwordConfirmation,
       });
       alert("회원가입 성공!");
       router.push("/login");
@@ -99,16 +99,16 @@ const SignupForm = () => {
           error={errors.password}
         />
         <FormInput
-          id="confirmPassword"
+          id="passwordConfirmation"
           label="비밀번호 확인"
           placeholder="비밀번호를 다시 입력해 주세요"
           type="password"
-          register={register("confirmPassword", {
+          register={register("passwordConfirmation", {
             required: "비밀번호 확인은 필수입니다.",
             validate: (value: string) =>
               value === password || "비밀번호가 일치하지 않습니다.",
           })}
-          error={errors.confirmPassword}
+          error={errors.passwordConfirmation}
         />
         <FormButton type="submit" loading={isLoading}>
           회원가입

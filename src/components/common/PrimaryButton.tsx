@@ -8,6 +8,7 @@ interface PrimaryButtonProps {
   variant?: "filled-green" | "filled-gray" | "outlined-green" | "outlined-gray";
   type?: "button" | "submit" | "reset";
   className?: string;
+  disabled?: boolean;
 }
 
 export default function PrimaryButton({
@@ -17,6 +18,7 @@ export default function PrimaryButton({
   width = "auto",
   variant = "filled-green",
   type = "button",
+  disabled = false,
 }: PrimaryButtonProps) {
   const getVariantStyle = () => {
     switch (variant) {
@@ -54,6 +56,7 @@ export default function PrimaryButton({
       type={type}
       className={styles.button}
       onClick={onClick}
+      disabled={disabled}
       style={{
         height: `${height}px`,
         width: typeof width === "number" ? `${width}px` : width,
