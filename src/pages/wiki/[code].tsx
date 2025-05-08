@@ -6,9 +6,11 @@ import PrimaryButton from "@/components/common/PrimaryButton";
 import LinkButton from "@/components/common/LinkButton";
 import QuizModal from "@/components/myWikiPage/QuizModal/QuizModal";
 import WikiEditor from "@/components/myWikiPage/WikiEditor/WikiEditor";
+import type { ProfileFormValues } from "@/components/myWikiPage/ProfileForm/ProfileForm";
 
 import { useUserInfo } from "@/hooks/myWiki/useUserInfo";
 import { useProfileInfo } from "@/hooks/myWiki/useProfileInfo";
+import { patchProfile, pingProfileUpdate } from "@/apis/profile";
 
 export default function WikiPage() {
   const router = useRouter();
@@ -24,6 +26,18 @@ export default function WikiPage() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [securityAnswer, setSecurityAnswer] = useState("");
+  const [showSnackbar, setShowSnackbar] = useState(false);
+
+  const [profileForm, setProfileForm] = useState<ProfileFormValues>({
+    nickname: profile?.nickname || "",
+    city: profile?.city || "",
+    mbti: profile?.mbti || "",
+    job: profile?.job || "",
+    sns: profile?.sns || "",
+    birthday: profile?.birthday || "",
+    bloodType: profile?.bloodType || "",
+    nationality: profile?.nationality || "",
+  });
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -38,6 +52,22 @@ export default function WikiPage() {
   const handleSuccessEdit = async () => {
     await refetchProfile();
     setIsEditMode(false);
+    setShowSnackbar(true);
+    setTimeout(() => setShowSnackbar(false), 3000);
+  };
+
+  const handleSaveProfile = async (formData: any) => {
+    console.log("💾 handleSaveProfile 호출됨");
+    console.log("📦 전달된 formData:", formData);
+
+    try {
+      await pingProfileUpdate();
+      await patchProfile({ ...formData, content: profile.content });
+      console.log("✅ 프로필 저장 요청 성공");
+      await refetchProfile();
+    } catch (error) {
+      console.error("❌ 프로필 저장 실패", error);
+    }
   };
 
   if (userLoading || profileLoading) return <p>로딩 중...</p>;
@@ -66,6 +96,7 @@ export default function WikiPage() {
             onSuccess={handleSuccessEdit}
             onCancel={handleCancelEdit}
             securityAnswer={securityAnswer}
+            onProfileChange={setProfileForm}
           />
         ) : profile.content ? (
           <S.Article>
@@ -83,7 +114,12 @@ export default function WikiPage() {
         )}
       </S.MainContent>
       <S.Sidebar>
-        <ProfileBar isEditMode={isEditMode} user={user} profile={profile} />
+        <ProfileBar
+          isEditMode={isEditMode}
+          user={user}
+          profile={profile}
+          onChange={setProfileForm}
+        />
       </S.Sidebar>
 
       {isModalOpen && (

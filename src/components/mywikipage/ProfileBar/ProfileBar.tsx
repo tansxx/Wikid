@@ -1,6 +1,7 @@
 import WikiAvatar from "../WikiAvatar/WikiAvatar";
 import ProfileForm from "../ProfileForm/ProfileForm";
 import { Container, ProfileCard } from "./ProfileBar.style";
+import type { ProfileFormValues } from "../ProfileForm/ProfileForm";
 
 interface ProfileBarProps {
   isEditMode: boolean;
@@ -13,13 +14,21 @@ interface ProfileBarProps {
     job?: string;
     image?: string;
     nickname?: string;
+    sns?: string;
+    birthday?: string;
+    bloodType?: string;
+    nationality?: string;
   };
+  onSaveProfile?: (data: any) => void;
+  onChange?: (data: ProfileFormValues) => void;
 }
 
 export default function ProfileBar({
   isEditMode,
   user,
   profile,
+  onSaveProfile,
+  onChange,
 }: ProfileBarProps) {
   return (
     <Container>
@@ -35,6 +44,11 @@ export default function ProfileBar({
           city={profile.city}
           mbti={profile.mbti}
           job={profile.job}
+          sns={profile.sns}
+          birthday={profile.birthday}
+          bloodType={profile.bloodType}
+          nationality={profile.nationality}
+          onSubmit={onSaveProfile}
         />
       </ProfileCard>
     </Container>

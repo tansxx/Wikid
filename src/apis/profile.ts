@@ -44,3 +44,13 @@ export const notifyProfileEditing = async (
   });
   return response.data;
 };
+
+export const patchProfile = async (data: any) => {
+  const response = await axiosInstance.patch(`/profiles`, data);
+  return response.data;
+};
+
+export const pingProfileUpdate = async () => {
+  const response = await axiosInstance.get("/profiles/ping");
+  return response.data;
+};

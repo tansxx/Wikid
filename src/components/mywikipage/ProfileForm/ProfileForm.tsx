@@ -1,4 +1,5 @@
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
+import { useEffect } from "react";
 import ProfileInput from "@/components/myWikiPage/ProfileForm/ProfileInput/ProfileInput";
 import { FormWrapper } from "./ProfileForm.style";
 
@@ -13,9 +14,11 @@ interface ProfileFormProps {
   birthday?: string;
   bloodType?: string;
   nationality?: string;
+  onSubmit?: (data: ProfileFormValues) => void;
+  onChange?: (data: ProfileFormValues) => void;
 }
 
-interface ProfileFormValues {
+export interface ProfileFormValues {
   nickname: string;
   city: string;
   mbti: string;
@@ -24,6 +27,8 @@ interface ProfileFormValues {
   birthday: string;
   bloodType: string;
   nationality: string;
+  onSubmit?: (data: ProfileFormValues) => void;
+  onChange?: (data: ProfileFormValues) => void;
 }
 
 export default function ProfileForm({
@@ -36,8 +41,10 @@ export default function ProfileForm({
   birthday = "",
   bloodType = "",
   nationality = "",
+  onChange,
+  onSubmit,
 }: ProfileFormProps) {
-  const { control } = useForm<ProfileFormValues>({
+  const { control, handleSubmit, watch } = useForm<ProfileFormValues>({
     defaultValues: {
       nickname,
       city,
@@ -50,8 +57,15 @@ export default function ProfileForm({
     },
   });
 
+  useEffect(() => {
+    const subscription = watch((value) => {
+      onChange?.(value as ProfileFormValues);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
   return (
-    <FormWrapper>
+    <FormWrapper as="form" onSubmit={handleSubmit((data) => onSubmit?.(data))}>
       <Controller
         name="city"
         control={control}
