@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 import FormButton from "../AuthForm/FormButton";
 import FormInput from "../AuthForm/FormInput";
 import { createQuestionAPI } from "@/apis/authAPI";
@@ -13,20 +14,30 @@ export default function QuestionCreateForm() {
     mode: "onBlur",
   });
 
+  const router = useRouter();
+
   const onSubmit = async (data: any) => {
     try {
-      await createQuestionAPI({
+      const res = await createQuestionAPI({
         securityQuestion: data.question,
         securityAnswer: data.answer,
       });
-      reset();
+
+      const code = res?.data?.code;
+
+      if (code) {
+        reset();
+        router.push(`/wiki/${code}`);
+      } else {
+        console.error("서버 응답에 code가 없습니다:", res?.data);
+      }
     } catch (error: any) {
       if (
         error?.response?.status === 403 ||
         error?.response?.status === 409 ||
         error?.response?.status === 400
       ) {
-        // 서버 측 유효성 오류: 별도 처리 가능
+        console.warn("유효성 오류 발생:", error.response.data);
       } else {
         console.error("질문 등록 실패:", error);
       }
