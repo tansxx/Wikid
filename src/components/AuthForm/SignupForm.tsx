@@ -37,17 +37,14 @@ const SignupForm = () => {
         password: data.password,
         passwordConfirmation: data.passwordConfirmation,
       });
-      alert("회원가입 성공!");
       router.push("/login");
     } catch (error) {
       console.error("회원가입 실패", error);
-      alert("회원가입 실패: 다시 시도해 주세요.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  // 비밀번호 확인용
   const password = watch("password", "");
 
   return (

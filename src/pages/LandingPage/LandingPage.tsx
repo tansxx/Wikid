@@ -1,3 +1,4 @@
+import { useProfileCode } from "@/hooks/mywiki/useProfileCode";
 import { useAuthStore } from "@/stores/authStore";
 import { useRouter } from "next/router";
 import React from "react";
@@ -5,10 +6,11 @@ import React from "react";
 const LandingPage = () => {
   const router = useRouter();
   const { isLoggedIn } = useAuthStore();
+  const code = useProfileCode();
 
   const handleClick = () => {
     if (isLoggedIn) {
-      router.push("/wiki");
+      router.push(`/wiki/${code}`);
     } else {
       router.push("/login");
     }
