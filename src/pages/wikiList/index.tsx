@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import WikiSearchBar from 'components/wikiList/WikiSearchBar';
-import WikiSearchList from 'components/wikiList/WikiSearchList';
-import { getProfileList, ProfileQueryParam } from '@/apis/profileList';
+import { useState, useEffect } from "react";
+import WikiSearchBar from "components/wikiList/WikiSearchBar";
+import WikiSearchList from "components/wikiList/WikiSearchList";
+import { getProfileList, ProfileQueryParam } from "@/apis/profileList";
 
 export interface ProfileListResponse {
   list: ProfileType[];
@@ -25,7 +25,7 @@ export default function WikiList() {
   const [query, setQuery] = useState<ProfileQueryParam>({
     page: 1,
     pageSize: 10,
-    name: '',
+    name: "",
   });
 
   useEffect(() => {
@@ -34,9 +34,7 @@ export default function WikiList() {
         setProfileInfo(data.list);
         setTotalCount(data.totalCount);
       })
-      .catch((err) => {
-        alert('정보를 불러오지 못했습니다.');
-      });
+      .catch((err) => {});
   }, [query]);
 
   return (

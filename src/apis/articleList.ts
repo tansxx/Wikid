@@ -1,27 +1,20 @@
-import { axiosInstance } from "./axios";
-
+import axiosInstance from "./axiosInstance";
 
 export interface ArticleQueryParam {
   page?: number;
   pageSize?: number;
-  orderBy?: 'recent' | 'like';
+  orderBy?: "recent" | "like";
   keyword?: string;
 }
 
-export async function getArticleList({
-  page = 1,
-  pageSize = 10,
-  orderBy = 'recent',
-  keyword = '',
-}: ArticleQueryParam = {}) {
-  const response = await axiosInstance.get(`/articles`, {
+export const getArticleList = async (query: ArticleQueryParam) => {
+  const { data } = await axiosInstance.get("/articles", {
     params: {
-      page,
-      pageSize,
-      orderBy,
-      keyword,
+      page: query.page ?? 1,
+      pageSize: query.pageSize ?? 10,
+      orderBy: query.orderBy ?? "recent",
+      keyword: query.keyword ?? "",
     },
   });
-
-  return response.data;
-}
+  return data;
+};

@@ -41,8 +41,6 @@ export const ButtonRow = styled.div`
   gap: 10px;
 `;
 
-// code.style.ts 파일에 다음 스타일을 추가
-
 export const Article = styled.div`
   width: 100%;
   padding: 20px;
