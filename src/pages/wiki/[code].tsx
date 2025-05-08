@@ -39,6 +39,7 @@ export default function WikiPage() {
     birthday: "",
     bloodType: "",
     nationality: "",
+    image: "",
   });
 
   const INACTIVITY_TIMEOUT = 5 * 60 * 1000;
@@ -55,6 +56,7 @@ export default function WikiPage() {
         birthday: profile.birthday || "",
         bloodType: profile.bloodType || "",
         nationality: profile.nationality || "",
+        image: profile.image || "",
       });
       setEditorContent(profile.content || "");
     }
@@ -101,10 +103,13 @@ export default function WikiPage() {
     try {
       if (typeof code === "string") {
         await notifyProfileEditing(code, securityAnswer);
+
+        // content와 profileForm을 함께 업데이트
         await updateProfile(code, {
           ...profileForm,
-          content,
+          content: content,
         });
+
         handleSuccessEdit();
       }
     } catch (error) {
@@ -158,7 +163,10 @@ export default function WikiPage() {
         <ProfileBar
           isEditMode={isEditMode}
           user={user}
-          profile={profile}
+          profile={profileForm}
+          onSaveProfile={(updatedProfile) => {
+            setProfileForm(updatedProfile);
+          }}
           onChange={setProfileForm}
         />
       </S.Sidebar>

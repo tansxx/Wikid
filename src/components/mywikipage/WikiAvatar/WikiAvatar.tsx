@@ -12,12 +12,14 @@ interface WikiAvatarProps {
   src: string;
   alt?: string;
   isEditMode: boolean;
+  onClick?: () => void;
 }
 
 export default function WikiAvatar({
   src,
   alt = "프로필 이미지",
   isEditMode,
+  onClick,
 }: WikiAvatarProps) {
   return (
     <Wrapper>
@@ -29,11 +31,13 @@ export default function WikiAvatar({
           height={200}
           $isEditMode={isEditMode}
         />
-        <HoverOverlay>
-          <CameraIconWrapper>
-            <CameraIcon />
-          </CameraIconWrapper>
-        </HoverOverlay>
+        {isEditMode && (
+          <HoverOverlay onClick={onClick}>
+            <CameraIconWrapper>
+              <CameraIcon />
+            </CameraIconWrapper>
+          </HoverOverlay>
+        )}
       </ImageWrapper>
     </Wrapper>
   );

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { postType } from '@/pages/boards';
-import { format, parseISO } from 'date-fns';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { postType } from "@/pages/boards";
+import { format, parseISO } from "date-fns";
 
 const PAGE_SIZE = 10;
 const PAGE_GROUP_SIZE = 5;
@@ -62,7 +62,7 @@ export default function BoardTable({
                   <dl className="flex relative flex-wrap">
                     <dd className="w-[10%] hidden md:block">{post.id}</dd>
                     <dd className="w-full md:w-[45%] block">
-                      <Link href={`/posts/${post.writer.id}`}>
+                      <Link href={`/boards/${post.writer.id}`}>
                         {post.title}
                       </Link>
                     </dd>
@@ -70,7 +70,7 @@ export default function BoardTable({
                       {post.writer.name}
                     </dd>
                     <dd className="w-[15%] ml-[16px] text-[#8F95B2] md:text-[#474D66]">
-                      {format(parseISO(post.createdAt), 'yyyy.MM.dd')}
+                      {format(parseISO(post.createdAt), "yyyy.MM.dd")}
                     </dd>
                     <dd className="w-[15%] absolute right-0 bottom-0 text-[#8F95B2] md:text-[#474D66]">
                       <Image
@@ -112,7 +112,7 @@ export default function BoardTable({
                   key={page}
                   onClick={() => handlePageChange(page)}
                   className={`relative inline-flex items-center px-4 py-2 text-sm ${
-                    page === currentPage ? 'text-[#4CBFA4]' : 'text-[#8F95B2]'
+                    page === currentPage ? "text-[#4CBFA4]" : "text-[#8F95B2]"
                   } rounded-md shadow-[0px_4px_20px_0px_#00000014]`}
                 >
                   {page}

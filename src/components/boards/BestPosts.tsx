@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { postType } from '@/pages/boards';
-import { format, parseISO } from 'date-fns';
+import Link from "next/link";
+import Image from "next/image";
+import { postType } from "@/pages/boards";
+import { format, parseISO } from "date-fns";
 
 export default function BestPosts({ bestPost }: { bestPost: postType[] }) {
   return (
@@ -26,7 +26,7 @@ export default function BestPosts({ bestPost }: { bestPost: postType[] }) {
           {bestPost.map((post) => (
             <Link
               key={post.writer.id}
-              href={`/posts/${post.writer.id}`}
+              href={`/boards/${post.writer.id}`}
               className="flex-shrink-0 w-[250px] h-[200px] md:w-[calc(50%-10px)] md:h-[220px] lg:w-[calc(25%-12px)] rounded-lg shadow-[0px_4px_20px_0px_#00000014]"
             >
               <img
@@ -42,7 +42,7 @@ export default function BestPosts({ bestPost }: { bestPost: postType[] }) {
                   <div className="text-[#8F95B2]">
                     <span>{post.writer.name}</span>
                     <span className="ml-[8px]">
-                      {format(parseISO(post.createdAt), 'yyyy.MM.dd')}
+                      {format(parseISO(post.createdAt), "yyyy.MM.dd")}
                     </span>
                   </div>
                   <div className="text-[#8F95B2]">
