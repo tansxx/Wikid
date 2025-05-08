@@ -1,10 +1,10 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import ArticleCard from '@/components/BoardDetail/ArticleCard';
-import { ArticleComments } from '@/components/BoardDetail';
-import CommonButton from '@/components/common/CommonButton';
-import { useAuthStore } from '@/stores/authStore';
-import { useStore } from '@/stores/useStore';
+import { useRouter } from "next/router";
+import Link from "next/link";
+import ArticleCard from "@/components/BoardDetail";
+import { ArticleComments } from "@/components/BoardDetail";
+import CommonButton from "@/components/common/CommonButton";
+import { useAuthStore } from "@/stores/authStore";
+import { useStore } from "@/stores/useStore";
 
 const BoardDetail = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const BoardDetail = () => {
   });
 
   const isLogin = useStore(useAuthStore, (state) => {
-    return state.isLogin;
+    return state.login;
   });
 
   return (

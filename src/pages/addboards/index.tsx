@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { AxiosError } from "axios";
-import CommonButton from "@/components/common/CommonButtion";
+import CommonButton from "@/components/common/CommonButton";
 import dateToString from "@/utils/dateToString";
 import { refineHTMLContent } from "@/utils/quillHtmlHandler";
 import { type ArticleFormData } from "@/types/apiType";

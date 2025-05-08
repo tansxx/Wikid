@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useRef, useEffect } from "react";
 import NotificationModal from "@/components/myWikiPage/NotificationModal/NotificationModal";
+import { useProfileImageStore } from "@/stores/useProfileImageStore";
 
 interface NavbarProps {
   profileImageUrl?: string;
@@ -16,6 +17,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
   const { isLoggedIn, logout } = useAuthStore();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const code = useProfileCode();
+  const { imageUrl } = useProfileImageStore();
 
   const router = useRouter();
   const profileRef = useRef<HTMLDivElement>(null);
@@ -74,10 +76,11 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
               <div className="relative top-1" ref={profileRef}>
                 <button onClick={() => setProfileOpen((prev) => !prev)}>
                   <Image
-                    src={profileImageUrl || "/assets/icons/ic_profile.svg"}
+                    src={imageUrl || "/assets/icons/ic_profile.svg"}
                     alt="프로필"
                     width={30}
                     height={30}
+                    className="rounded-full"
                   />
                 </button>
 

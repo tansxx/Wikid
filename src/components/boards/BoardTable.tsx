@@ -62,7 +62,7 @@ export default function BoardTable({
                     <td className="py-3">{post.id}</td>
                     <td className="py-3">
                       <Link
-                        href={`/posts/${post.writer.id}`}
+                        href={`/boards/${post.writer.id}`}
                         className="text-blue-600 hover:underline"
                       >
                         <span className="text-[#474D66]">{post.title}</span>

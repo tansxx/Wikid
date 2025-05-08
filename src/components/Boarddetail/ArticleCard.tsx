@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { Zoom } from 'react-toastify';
-import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
-import Lottie from 'lottie-react';
-import Link from 'next/link';
-import dateToString from '@/utils/dateToString';
+import React, { useEffect, useState } from "react";
+import { Zoom } from "react-toastify";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import Lottie from "lottie-react";
+import Link from "next/link";
+import dateToString from "@/utils/dateToString";
 import {
   deleteArticleLike,
   getDetailArticle,
   postArticleLike,
   deleteDetailArticle,
-} from '@/lib/apis/article/articleApi.api';
-import { ArticleResponse } from '@/types/apiType';
-import { IdType } from '@/types/boardDetail';
-import ToastSelect from '@/components/common/ToastSelect';
-import 'react-toastify/dist/ReactToastify.css';
-import { StyledToastContainer } from '@/styles/ToastStyle';
-import DeleteIcon from '@/../public/svg/delete.svg';
-import EditIcon from '@/../public/svg/edit.svg';
-import { DeleteSuccess, UnableDelete } from '@/constants/toast';
-import HeartLottie from '@/../public/lottie/heart.json';
-import CommonButton from '../common/CommonButton';
-import Loading from '../Loading';
-import ConfirmModal from '../common/ConfirmModal';
-import MetaTag from '../common/MetaTag';
+} from "@/lib/apis/article/articleApi.api";
+import { ArticleResponse } from "@/types/apiType";
+import { IdType } from "@/types/boardDetail";
+import ToastSelect from "@/components/common/ToastSelect";
+import "react-toastify/dist/ReactToastify.css";
+import { StyledToastContainer } from "@/styles/ToastStyle";
+import DeleteIcon from "@/../public/svg/delete.svg";
+import EditIcon from "@/../public/svg/edit.svg";
+import { DeleteSuccess, UnableDelete } from "@/constants/toast";
+import HeartLottie from "@/../public/lottie/heart.json";
+import CommonButton from "../common/CommonButton";
+import Loading from "../Loading";
+import ConfirmModal from "../common/ConfirmModal";
+import MetaTag from "../common/MetaTag";
 
 interface ArticleCardProps {
   id: IdType;
@@ -34,14 +34,14 @@ interface ArticleCardProps {
 
 const EditorComponent = dynamic(
   () => {
-    return import('react-quill');
+    return import("react-quill");
   },
   {
     loading: () => {
       return <div>...loading</div>;
     },
     ssr: false,
-  },
+  }
 );
 
 const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
@@ -62,7 +62,7 @@ const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
         setIsLiked(res.isLiked);
         setWriterId(res.writer.id);
       } catch (error) {
-        router.push('/500');
+        router.push("/500");
       }
     };
     if (id) {
@@ -74,11 +74,11 @@ const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
     try {
       if (!isLogin) {
         ToastSelect({
-          type: 'notification',
-          message: '로그인 후 이용해주세요.',
+          type: "notification",
+          message: "로그인 후 이용해주세요.",
           autoClose: 1000,
           onClose: () => {
-            router.push('/login');
+            router.push("/login");
           },
         });
         return;
@@ -94,7 +94,7 @@ const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
         setIsLiked(true);
       }
     } catch (error) {
-      router.push('/500');
+      router.push("/500");
     }
   };
 
@@ -102,14 +102,14 @@ const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
     try {
       await deleteDetailArticle(Number(id));
       ToastSelect({
-        type: 'check',
+        type: "check",
         message: DeleteSuccess,
         onClose: () => {
-          router.push('/boards');
+          router.push("/boards");
         },
       });
     } catch (error) {
-      ToastSelect({ type: 'error', message: UnableDelete });
+      ToastSelect({ type: "error", message: UnableDelete });
     }
   };
 
@@ -147,7 +147,10 @@ const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
                       <EditIcon />
                     </motion.div>
                   </Link>
-                  <motion.div className="hoverScale cursor-pointer" onClick={handleDeleteModalOpen}>
+                  <motion.div
+                    className="hoverScale cursor-pointer"
+                    onClick={handleDeleteModalOpen}
+                  >
                     <DeleteIcon />
                   </motion.div>
                 </div>
@@ -155,7 +158,10 @@ const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
               {userId === writerId && (
                 <div className="hidden gap-3 lg:flex">
                   <Link href={`/board/${id}/edit`} rel="preload">
-                    <CommonButton variant="primary" className="min-w-[120px] px-[32px]">
+                    <CommonButton
+                      variant="primary"
+                      className="min-w-[120px] px-[32px]"
+                    >
                       수정하기
                     </CommonButton>
                   </Link>
@@ -172,7 +178,9 @@ const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
             <div className="mt-3 flex justify-between border-b border-b-grayscale-200 pb-3 text-xs-regular text-grayscale-400 lg:text-md-regular">
               <div className="pr-3">
                 {articleData.writer.name}
-                <span className="ml-3">{dateToString(articleData.updatedAt)}</span>
+                <span className="ml-3">
+                  {dateToString(articleData.updatedAt)}
+                </span>
               </div>
               <div onClick={handleLike} className=" cursor-pointer">
                 <div className="relative flex items-center">
@@ -180,11 +188,11 @@ const ArticleCard = ({ id, userId, isLogin }: ArticleCardProps) => {
                     <Lottie
                       animationData={HeartLottie}
                       style={{
-                        position: 'absolute',
-                        width: '40px',
-                        height: '40px',
-                        right: '4px',
-                        zIndex: '-99',
+                        position: "absolute",
+                        width: "40px",
+                        height: "40px",
+                        right: "4px",
+                        zIndex: "-99",
                       }}
                       autoplay={true}
                       loop={false}

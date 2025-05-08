@@ -14,6 +14,7 @@ interface ProfileFormProps {
   birthday?: string;
   bloodType?: string;
   nationality?: string;
+  image?: string;
   onSubmit?: (data: ProfileFormValues) => void;
   onChange?: (data: ProfileFormValues) => void;
 }
@@ -27,6 +28,7 @@ export interface ProfileFormValues {
   birthday: string;
   bloodType: string;
   nationality: string;
+  image?: string;
   onSubmit?: (data: ProfileFormValues) => void;
   onChange?: (data: ProfileFormValues) => void;
 }
@@ -41,6 +43,7 @@ export default function ProfileForm({
   birthday = "",
   bloodType = "",
   nationality = "",
+  image = "",
   onChange,
   onSubmit,
 }: ProfileFormProps) {
@@ -54,6 +57,7 @@ export default function ProfileForm({
       birthday,
       bloodType,
       nationality,
+      image,
     },
   });
 

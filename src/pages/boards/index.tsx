@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import BestPosts from 'components/boards/BestPosts';
-import BoardSearchBar from 'components/boards/BoardSearchBar';
-import BoardTable from 'components/boards/BoardTable';
-import BoardTableMobile from 'components/boards/BoardTableMobile';
-import { getArticleList, ArticleQueryParam } from '@/apis/articleList';
+import { useState, useEffect } from "react";
+import BestPosts from "components/boards/BestPosts";
+import BoardSearchBar from "components/boards/BoardSearchBar";
+import BoardTable from "components/boards/BoardTable";
+import BoardTableMobile from "components/boards/BoardTableMobile";
+import { getArticleList, ArticleQueryParam } from "@/apis/articleList";
 
 export interface postType {
   updatedAt: string;
@@ -31,8 +31,8 @@ export default function boards() {
   const [totalCount, setTotalCount] = useState<number>(1);
   const [query, setQuery] = useState<ArticleQueryParam>({
     page: 1,
-    orderBy: 'recent',
-    keyword: '',
+    orderBy: "recent",
+    keyword: "",
   });
 
   useEffect(() => {
@@ -42,17 +42,17 @@ export default function boards() {
         setTotalCount(data.totalCount);
       })
       .catch((err) => {
-        alert('정보를 불러오지 못했습니다.');
+        alert("정보를 불러오지 못했습니다.");
       });
   }, [query]);
 
   useEffect(() => {
-    getArticleList({ pageSize: 4, orderBy: 'like' })
+    getArticleList({ pageSize: 4, orderBy: "like" })
       .then((data) => {
         setBestPosts(data.list);
       })
       .catch((err) => {
-        alert('정보를 불러오지 못했습니다.');
+        alert("정보를 불러오지 못했습니다.");
       });
   }, []);
 
