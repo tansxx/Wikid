@@ -13,15 +13,27 @@ interface AuthState {
   setInitialized: (value: boolean) => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  isLoggedIn: false,
-  accessToken: null,
-  refreshToken: null,
-  isInitialized: true,
-  login: () => set({ isLoggedIn: true }),
-  logout: () =>
-    set({ isLoggedIn: false, accessToken: null, refreshToken: null }),
-  setAccessToken: (token) => set({ accessToken: token }),
-  setRefreshToken: (token) => set({ refreshToken: token }),
-  setInitialized: (value) => set({ isInitialized: value }),
-}));
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      isLoggedIn: false,
+      accessToken: null,
+      refreshToken: null,
+      isInitialized: false,
+      login: () => set({ isLoggedIn: true }),
+      logout: () =>
+        set({ isLoggedIn: false, accessToken: null, refreshToken: null }),
+      setAccessToken: (token) => set({ accessToken: token }),
+      setRefreshToken: (token) => set({ refreshToken: token }),
+      setInitialized: (value) => set({ isInitialized: value }),
+    }),
+    {
+      name: "auth-storage",
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.isInitialized = true;
+        }
+      },
+    }
+  )
+);
