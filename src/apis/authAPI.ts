@@ -28,10 +28,15 @@ export async function changePasswordAPI(data: {
   return response.data;
 }
 
-export const createQuestionAPI = async (question: string, answer: string) => {
-  const res = await axiosInstance.post(`/profiles`, {
-    securityQuestion: question,
-    securityAnswer: answer,
+export async function createQuestionAPI({
+  securityQuestion,
+  securityAnswer,
+}: {
+  securityQuestion: string;
+  securityAnswer: string;
+}) {
+  return axiosInstance.post("/profiles", {
+    securityQuestion,
+    securityAnswer,
   });
-  return res.data;
-};
+}
