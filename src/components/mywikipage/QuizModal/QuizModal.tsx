@@ -19,7 +19,7 @@ import {
   Notice,
 } from "./QuizModal.style";
 
-import { useProfileCode } from "@/hooks/myWiki/useProfileCode";
+import { useProfileCode } from "@/hooks/mywiki/useProfileCode";
 import axios from "@/apis/axiosInstance";
 
 type ModalProps = {

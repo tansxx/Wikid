@@ -19,18 +19,14 @@ export default function PasswordChangeForm() {
   const router = useRouter();
 
   const onChangePassword = async (data: any) => {
-    // console.log("제출 데이터:", data);
     try {
       const response = await changePasswordAPI({
         currentPassword: data.currentPassword,
         password: data.password,
         passwordConfirmation: data.passwordConfirmation,
       });
-      //   console.log("서버 응답:", response);
-      alert("비밀번호가 변경되었습니다!");
       router.push("/");
     } catch (error) {
-      alert("비밀번호 변경 실패");
       console.error(error);
     }
   };

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { postType } from '@/pages/boards';
-import { format, parseISO } from 'date-fns';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { postType } from "@/pages/boards";
+import { format, parseISO } from "date-fns";
 
 const PAGE_SIZE = 10;
 const PAGE_GROUP_SIZE = 5;
@@ -71,7 +71,7 @@ export default function BoardTable({
                     <td className="py-3">{post.writer.name}</td>
                     <td className="py-3">{post.likeCount}</td>
                     <td className="py-3">
-                      {format(parseISO(post.createdAt), 'yyyy.MM.dd')}
+                      {format(parseISO(post.createdAt), "yyyy.MM.dd")}
                     </td>
                   </tr>
                 ))}
@@ -104,7 +104,7 @@ export default function BoardTable({
                   key={page}
                   onClick={() => handlePageChange(page)}
                   className={`relative inline-flex items-center px-4 py-2 text-sm ${
-                    page === currentPage ? 'text-[#4CBFA4]' : 'text-[#8F95B2]'
+                    page === currentPage ? "text-[#4CBFA4]" : "text-[#8F95B2]"
                   } rounded-md shadow-[0px_4px_20px_0px_#00000014]`}
                 >
                   {page}

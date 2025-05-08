@@ -1,4 +1,4 @@
-import { useProfileCode } from "@/hooks/myWiki/useProfileCode";
+import { useProfileCode } from "@/hooks/mywiki/useProfileCode";
 import { useAuthStore } from "@/stores/authStore";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,10 +49,10 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
           </Link>
 
           <div className="hidden md:flex space-x-10">
-            <Link href="/wiki">
+            <Link href="/wikilist">
               <span className="text-gray400 text-sm  ">위키목록</span>
             </Link>
-            <Link href="/board">
+            <Link href="/boards">
               <span className="text-gray400 text-sm ">자유게시판</span>
             </Link>
           </div>
@@ -93,12 +93,13 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
                     >
                       내 위키
                     </Link>
-                    <div
+                    <Link
+                      href="/"
                       onClick={handleLogout}
                       className="text-sm  text-text-gray-700 w-full"
                     >
                       로그아웃
-                    </div>
+                    </Link>
                   </div>
                 )}
               </div>
@@ -109,7 +110,6 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
             </Link>
           )}
         </div>
-        feature/login-ui
         <div className="md:hidden relative top-1">
           <button onClick={() => setMenuOpen((prev) => !prev)}>
             <Image
@@ -122,7 +122,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
 
           {menuOpen && (
             <div className="absolute right-0 mt-2 w-20 bg-white shadow-lg border z-50 flex rounded-md flex-col items-center p-2 space-y-2">
-              <Link href="/wiki" className="text-sm text-gray-700  w-full">
+              <Link href="/wikilist" className="text-sm text-gray-700  w-full">
                 위키목록
               </Link>
               <Link href="/board" className="text-sm text-gray-700 w-full">

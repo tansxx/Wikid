@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as S from "./code.style";
 import ProfileBar from "@/components/myWikiPage/ProfileBar/ProfileBar";
 import PrimaryButton from "@/components/common/PrimaryButton";
@@ -11,6 +11,7 @@ import type { ProfileFormValues } from "@/components/myWikiPage/ProfileForm/Prof
 import { useUserInfo } from "@/hooks/mywiki/useUserInfo";
 import { useProfileInfo } from "@/hooks/mywiki/useProfileInfo";
 import { notifyProfileEditing, updateProfile } from "@/apis/profile";
+import InactivityModal from "@/components/myWikiPage/InactivityModal/InactivityModal";
 
 export default function WikiPage() {
   const router = useRouter();
@@ -25,6 +26,7 @@ export default function WikiPage() {
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInactiveModalOpen, setIsInactiveModalOpen] = useState(false);
   const [securityAnswer, setSecurityAnswer] = useState("");
   const [editorContent, setEditorContent] = useState("");
 
@@ -38,6 +40,9 @@ export default function WikiPage() {
     bloodType: "",
     nationality: "",
   });
+
+  const INACTIVITY_TIMEOUT = 5 * 60 * 1000;
+  const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (profile) {
@@ -54,6 +59,30 @@ export default function WikiPage() {
       setEditorContent(profile.content || "");
     }
   }, [profile]);
+
+  useEffect(() => {
+    const resetTimer = () => {
+      if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+      inactivityTimer.current = setTimeout(() => {
+        setIsEditMode(false);
+        setIsInactiveModalOpen(true);
+      }, INACTIVITY_TIMEOUT);
+    };
+
+    if (isEditMode) {
+      document.addEventListener("keydown", resetTimer);
+      document.addEventListener("mousedown", resetTimer);
+      document.addEventListener("touchstart", resetTimer);
+      resetTimer();
+
+      return () => {
+        document.removeEventListener("keydown", resetTimer);
+        document.removeEventListener("mousedown", resetTimer);
+        document.removeEventListener("touchstart", resetTimer);
+        if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+      };
+    }
+  }, [isEditMode]);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -136,6 +165,10 @@ export default function WikiPage() {
 
       {isModalOpen && (
         <QuizModal onClose={handleCloseModal} onConfirm={handleConfirmQuiz} />
+      )}
+
+      {isInactiveModalOpen && (
+        <InactivityModal onClose={() => setIsInactiveModalOpen(false)} />
       )}
     </S.Container>
   );

@@ -1,33 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./NotificationModal.style";
+import axios from "axios";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface Notification {
   id: number;
-  message: string;
-  read: boolean;
-  time: string;
+  content: string;
+  createdAt: string;
 }
-
-const initialNotifications: Notification[] = [
-  { id: 1, message: "내 위키가 수정되었습니다.", read: false, time: "1분 전" },
-  { id: 2, message: " 내 위키가 수정되었습니다.", read: true, time: "25분 전" },
-];
 
 export default function NotificationModal({
   onClose,
 }: {
   onClose: () => void;
 }) {
-  const [notifications, setNotifications] = useState(initialNotifications);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [showOnlyUnread, setShowOnlyUnread] = useState(false);
 
-  const visibleNotifications = showOnlyUnread
-    ? notifications.filter((n) => !n.read)
-    : notifications;
-
-  const handleDelete = (id: number) => {
-    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  const fetchNotifications = async () => {
+    try {
+      const res = await axios.get(`${API_BASE_URL}/notifications`, {
+        params: { page: 1, pageSize: 100 },
+      });
+      setNotifications(res.data.list);
+    } catch (err) {
+      console.error("알림 불러오기 실패:", err);
+    }
   };
+
+  const deleteNotification = async (id: number) => {
+    try {
+      await axios.delete(`${API_BASE_URL}/notifications/${id}`);
+      setNotifications((prev) => prev.filter((n) => n.id !== id));
+    } catch (err) {
+      console.error("알림 삭제 실패:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
+  const visibleNotifications = showOnlyUnread ? notifications : notifications;
 
   return (
     <S.ModalContainer>
@@ -50,10 +65,10 @@ export default function NotificationModal({
 
       <S.NotificationList>
         {visibleNotifications.map((n) => (
-          <S.NotificationItem key={n.id} read={n.read}>
-            <S.ItemText>{n.message}</S.ItemText>
-            <S.ItemTime>{n.time}</S.ItemTime>
-            <S.DeleteButton onClick={() => handleDelete(n.id)}>
+          <S.NotificationItem key={n.id} read={false}>
+            <S.ItemText>{n.content}</S.ItemText>
+            <S.ItemTime>{new Date(n.createdAt).toLocaleString()}</S.ItemTime>
+            <S.DeleteButton onClick={() => deleteNotification(n.id)}>
               x
             </S.DeleteButton>
           </S.NotificationItem>

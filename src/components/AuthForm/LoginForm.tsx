@@ -27,7 +27,6 @@ const LoginForm = () => {
   }, []);
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    // if (!mounted || !isInitialized) return;
     if (!mounted) return;
 
     try {
@@ -38,6 +37,7 @@ const LoginForm = () => {
 
       setAccessToken(accessToken);
       login();
+      localStorage.setItem("accessToken", accessToken);
 
       router.push("/");
     } catch (error) {
