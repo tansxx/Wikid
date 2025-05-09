@@ -4,70 +4,50 @@
 
 ---
 
-### 🧑‍💻 팀원 소개 및 역할 분담
+## 👤 팀원 소개 & 역할
 
-<table>
-  <tr>
-    <th><a href="https://github.com/tansxx">@강희정</a></th>
-    <th><a href="https://github.com/prkhaeun">@박하은</a></th>
-    <th><a href="https://github.com/sssson0">@손혁진</a></th>
-    <th><a href="https://github.com/ShiroUsagi25">@이윤승</a></th>
-    <th><a href="https://github.com/daonJeon">@전수영</a></th>
-  </tr>
-  <tr>
-    <td><img src="https://avatars.githubusercontent.com/u/159680008?v=4" width="100"></td>
-    <td><img src="https://avatars.githubusercontent.com/u/193223460?v=4" width="100"></td>
-    <td><img src="https://avatars.githubusercontent.com/u/159625710?v=4" width="100"></td>
-    <td><img src="https://avatars.githubusercontent.com/u/192941814?v=4" width="100"></td>
-    <td><img src="https://avatars.githubusercontent.com/u/16948775?v=4" width="100"></td>
-  </tr>
-</table>
-
-| 이름 | 담당 기능 |
-|------|-----------|
-| **강희정** | 내 위키 페이지, 위키 페이지(콘텐츠 있음) |
-| **박하은** | 랜딩 페이지, 공통 컴포넌트, 모달 |
-| **손혁진** | 회원가입, 로그인, 계정 설정 |
-| **이윤승** | 게시글 상세 페이지, 게시물 관련 기능 |
-| **전수영** | 위키 목록 페이지, 자유게시판 |
+| 이름 | GitHub | 주요 담당 기능 | 프로필 |
+|------|--------|----------------|--------|
+| **강희정** | [@tansxx](https://github.com/tansxx) | 내 위키 페이지, 콘텐츠 위키 작성 | <img src="https://avatars.githubusercontent.com/u/159680008?v=4" width="60" /> |
+| **박하은** | [@prkhaeun](https://github.com/prkhaeun) | 랜딩, 공통 컴포넌트, 모달 UX | <img src="https://avatars.githubusercontent.com/u/193223460?v=4" width="60" /> |
+| **손혁진** | [@sssson0](https://github.com/sssson0) | 회원 인증 (가입/로그인), 계정 설정 | <img src="https://avatars.githubusercontent.com/u/159625710?v=4" width="60" /> |
+| **이윤승** | [@ShiroUsagi25](https://github.com/ShiroUsagi25) | 게시글 상세 UI, 게시글 인터랙션 | <img src="https://avatars.githubusercontent.com/u/192941814?v=4" width="60" /> |
+| **전수영** | [@daonJeon](https://github.com/daonJeon) | 위키 목록 페이지, 자유게시판 | <img src="https://avatars.githubusercontent.com/u/16948775?v=4" width="60" /> |
 
 ---
 
 ## 🔗 배포 주소
+- (곧 공개 예정입니다)
 
 ## 🚀 배포 환경
-- 
+- 준비 중
 
-## 📅 개발 기간
-
-2025.04.22~2025.05.08
-
----
-
-## 📌 주요 기능
+## 🗓 개발 기간
+- **2025.04.22 ~ 2025.05.08**
 
 ---
 
-### 설치 및 실행
+## ✨ 주요 기능 요약
 
-1. 저장소 클론:
-```java
-git clone [저장소 URL]
-cd [프로젝트 디렉토리]
-```
+---
 
-2. 의존성 설치:
-```java
-npm install
-```
-3. 개발 서버 실행:
-```java
-npm run dev
+## ⚙️ 설치 및 실행 방법
+
+```bash
+# 1. 저장소 클론
+$ git clone [저장소 URL]
+$ cd [프로젝트 디렉토리]
+
+# 2. 의존성 설치
+$ npm install
+
+# 3. 개발 서버 실행
+$ npm run dev
 ```
 
 ---
 
-## 🛠️ 기술 스택 (Tech Stack)
+## 🛠 Tech Stack
 
 | 역할 | 사용 기술 |
 |--|--|
@@ -78,61 +58,119 @@ npm run dev
 | API | ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square) |
 | Auth | ![NextAuth](https://img.shields.io/badge/NextAuth.js-3B82F6?style=flat-square&logo=auth0&logoColor=white) |
 
-<br />
+> 본 프로젝트는 아래 기술 스택을 기반으로 구성되었습니다.
 
-## 📚 라이브러리 (Library)
 
+### 🔧 Environment & Build
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=webpack&logoColor=black)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+### 🎨 UI & Styling
+
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![StyledComponents](https://img.shields.io/badge/Styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+### 🔌 API & Auth
+
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge)
+![NextAuth.js](https://img.shields.io/badge/NextAuth.js-3B82F6?style=for-the-badge&logo=auth0&logoColor=white)
+
+### 🔁 Routing & State
+
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+<!-- 필요 시 상태관리 라이브러리 추가 가능 (예: Recoil, Zustand 등) -->
+
+---
 
 ## 📂 폴더 및 파일 구조 (Folder Structure)
-
+```bash
+wikid
+│
+├── .github          # Github 설정
+│
+├── public/          # 정적 파일들을 저장
+│    └── assets/     # 이미지, 아이콘 등 저장
+│         ├── icons/
+│         └── images/
+│
+├── src/
+│    ├── apis/
+│    │
+│    ├── components/ # 재사용 가능한 UI 컴포넌트
+│    │
+│    ├── costants/   # 상수 값 관리
+│    │
+│    ├── contexts/   # React Context API 관련 파일
+│    │
+│    ├── hooks/      # 커스텀 훅
+│    │
+│    ├── pages/      # 라우트 단위 페이지 컴포넌트
+│    │
+│    ├── styles/     # 공통 GlolbalStyle & Theme 관리
+│    │
+│    └── utils/      # 유틸리티 함수 모음
+│
+📄 .eslintrc.json        # ESLint 설정
+📄 .gitignore            # Git에서 무시할 파일 목록
+📄 next.config.js        # Next.js 설정
+📄 package.json          # 프로젝트 설정 및 의존성
+📄 tsconfig.json         # TypeScript 설정
+📄 README.md             # 프로젝트 설명 문서
+```
 
 ---
 
-## 📂 폴더/파일명 네이밍 컨벤션
+## 🧾 네이밍 규칙
 
-| 대상 | 규칙 | 예시 |
-|--|--|--|
-| 폴더명 | 케밥케이스 (kebab-case) | components, user-profile |
-| 컴포넌트 파일명 | 파스칼케이스 (PascalCase) | UserProfile.jsx |
-| 스타일 파일명 | 케밥케이스 + .styles.js | user-profile.styles.js |
-| 이미지/아이콘 파일명 | 케밥케이스 | logo-icon.png, profile-default.png |
-| 함수명/변수명 | 카멜케이스 (camelCase) | fetchUserData, userList |
-| 환경변수 | 대문자+스네이크케이스 | REACT_APP_API_URL |
+| 항목 | 방식 | 예시 |
+|------|------|------|
+| 폴더명 | kebab-case | user-profile |
+| 컴포넌트 | PascalCase | WikiCard.tsx |
+| 스타일 파일 | kebab-case + .styles.js | wiki-section.styles.js |
+| 이미지 | kebab-case | logo-icon.png |
+| 변수/함수 | camelCase | fetchWikiData |
+| 환경변수 | UPPER_SNAKE_CASE | NEXT_PUBLIC_API_URL |
+---
 
 ---
 
-## 🌿 브랜치 네이밍 컨벤션
+## 🌿 Git Branch 전략
 
-| 브랜치 종류 | 네이밍 규칙 | 예시 |
-|--|--|--|
-| 기능 개발 | feature/{작업-설명} | feature/login-ui |
-| 버그 수정 | fix/{버그-설명} | fix/login-button-bug |
-| 핫픽스 | hotfix/{긴급수정-설명} | hotfix/main-build-error |
-| 문서 수정 | docs/{문서-설명} | docs/readme-update |
+| 브랜치명 | 목적 |
+|----------|------|
+| `main` | 배포 전용 브랜치 |
+| `develop` | 통합 개발 브랜치 |
+| `feature/*` | 기능 개발 단위 브랜치 |
+| `fix/*` | 버그 수정 브랜치 |
+| `docs/*` | 문서 관련 브랜치 |
 
 ---
 
-### 📑 Commit Type
+## 💬 커밋 메시지 컨벤션
+
 | 태그 | 의미 |
-|--|--|
-| Feat | ✨ 새로운 기능 추가 |
+|------|------|
+| Feat | ✨ 기능 추가 |
 | Fix | 🐛 버그 수정 |
-| Docs | 📚 문서 수정 |
-| Style | 💄 포맷팅, 세미콜론 누락 등 |
+| Style | 💄 스타일 변경 |
+| Docs | 📝 문서 변경 |
 | Refactor | 🔨 리팩토링 |
-| Test | ✅ 테스트 코드 추가 |
-| Chore | 🔧 설정, 빌드 변경 등 |
+| Test | ✅ 테스트 코드 |
+| Chore | 🔧 기타 설정 변경 |
 
+### 예시
 
-### 📖 Commit 예시
+```bash
+✨ Feat: 위키 카드 컴포넌트 생성
+- 사용자 이미지 및 소개 텍스트 구현
+- 반응형 레이아웃 처리 완료
 ```
-✨ Feat: 회원가입 화면 및 로직 추가
 
-- 회원가입 화면 UI 구현
-- 사용자 입력 검증 로직 추가
-- API 통신 연결
-
-```
+---
 
 ### 🌈 이모지 가이드
 | 이모지 | 의미 |
@@ -153,50 +191,5 @@ npm run dev
 | 🔖 | 버전 태그 |
 | 🚀 | 배포 |
 
----
 
-## 🍳 PR Convention (Pull Request 규칙)
-
-| 항목 | 설명 |
-|--|--|
-| Summary | 간단 변경 요약 |
-| Changes | 주요 변경 요약 |
-| Checklist | ✔️ 컨벤션 준수 ✔️ 테스트 ✔️ 설명 ✔️ 브랜치 확인 |
-| Test Plan | 테스트 방법 및 결과 |
-| Screenshots | UI 변경 시 캡처 필수 |
-| Additional | 리뷰어 참고 사항 |
-
----
-
-## 📲 Issue Convention
-
-| 항목 | 설명 |
-|--|--|
-| Summary | 작업 요약 |
-| Branch Name | `feature/{작업설명}`, `fix/{버그설명}` |
-| Due Date | YYYY/MM/DD |
-| References | 관련 자료 링크 |
-| Checklist | 할 일 리스트 |
-
----
-
-## 🖊️ Git Flow
-
-| 브랜치명 | 설명 |
-|--|--|
-| main | 배포 브랜치 |
-| develop | 통합 개발 브랜치 |
-| feature/* | 기능 개발 브랜치 |
-
-### 💡 작업 흐름
-1. 이슈 생성
-2. `develop` 최신화
-3. `develop`에서 새 `feature` 브랜치 생성
-4. 해당 브랜치에서 작업 진행
-5. 기능별 커밋 나눠서 작성
-6. 작업 완료 후 에러 체크 & push
-7. PR 작성하고 코드 리뷰 요청
-8. 리뷰 완료 후 develop에 머지
-
----
 
