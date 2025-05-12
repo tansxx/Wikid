@@ -9,7 +9,7 @@ import { useAuthStore } from "@/stores/authStore";
 import axios from "@/apis/axiosInstance";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const { login, logout, setInitialized } = useAuthStore();
+  const { isLoggedIn, logout, setInitialized, login } = useAuthStore();
 
   useEffect(() => {
     const tryAutoLogin = async () => {
@@ -36,7 +36,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} />
       <Component {...pageProps} />
     </ThemeProvider>
   );
