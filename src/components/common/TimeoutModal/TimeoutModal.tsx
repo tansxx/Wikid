@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router';
-import CloseButton from '@/components/common/CloseButton/CloseButton';
-import PrimaryButton from '@/components/common/Button/Button';
+import { useRouter } from "next/router";
+import CloseButton from "../CloseButton";
+import PrimaryButton from "../PrimaryButton";
 
 type ConnectionLostModalProps = {
   isOpen: boolean;
@@ -15,7 +15,7 @@ const ConnectionLostModal = ({ isOpen, onClose }: ConnectionLostModalProps) => {
 
   const handleRetry = () => {
     onClose();
-    router.push('/wiki-participation');  //위키 참여하기 페이지로 이동
+    router.push("/wiki-participation"); //위키 참여하기 페이지로 이동
   };
 
   return (
