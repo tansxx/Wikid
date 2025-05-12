@@ -15,7 +15,7 @@ const ConnectionLostModal = ({ isOpen, onClose }: ConnectionLostModalProps) => {
 
   const handleRetry = () => {
     onClose();
-    router.push("/wiki-participation"); //위키 참여하기 페이지로 이동
+    router.push("/wiki-participation");
   };
 
   return (
@@ -33,7 +33,7 @@ const ConnectionLostModal = ({ isOpen, onClose }: ConnectionLostModalProps) => {
           </p>
         </div>
         <div className="flex justify-end mt-8">
-          <PrimaryButton onClick={handleRetry} variant="filled-green" size="md">
+          <PrimaryButton onClick={handleRetry} variant="filled-green">
             확인
           </PrimaryButton>
         </div>
