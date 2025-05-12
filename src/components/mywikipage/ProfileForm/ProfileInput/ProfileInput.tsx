@@ -2,7 +2,7 @@ import {
   InputWrapper,
   Label,
   Input,
-} from "@/components/myWikiPage/ProfileForm/ProfileInput/ProfileInput.styles";
+} from "@/components/mywikipage/ProfileForm/ProfileInput/ProfileInput.styles";
 
 interface ProfileInputProps {
   label: string;

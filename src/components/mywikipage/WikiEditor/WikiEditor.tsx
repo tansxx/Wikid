@@ -1,5 +1,4 @@
 import { useEditor, EditorContent } from "@tiptap/react";
-// 개별 익스텐션을 모두 명시적으로 가져옵니다
 import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";

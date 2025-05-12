@@ -1,6 +1,6 @@
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { useEffect } from "react";
-import ProfileInput from "@/components/myWikiPage/ProfileForm/ProfileInput/ProfileInput";
+import ProfileInput from "@/components/mywikipage/ProfileForm/ProfileInput/ProfileInput";
 import { FormWrapper } from "./ProfileForm.style";
 
 interface ProfileFormProps {
