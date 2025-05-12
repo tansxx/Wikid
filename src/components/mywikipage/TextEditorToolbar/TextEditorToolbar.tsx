@@ -25,11 +25,6 @@ export default function TextEditorToolbar({
 }: TextEditorToolbarProps) {
   if (!editor) return null;
 
-  // 디버깅용: 에디터 명령어 확인
-  console.log("제목 명령어 가능 여부:", editor.can().setHeading({ level: 1 }));
-  console.log("목록 명령어 가능 여부:", editor.can().toggleBulletList());
-
-  // 제목 변경 핸들러
   const handleHeadingChange = (level: string) => {
     if (level === "") return;
 
