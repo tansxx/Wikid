@@ -3,7 +3,7 @@ import Image from "next/image";
 import IcLink from "@/assets/icons/ic_link.svg";
 import { ProfileType } from "@/pages/wikiList";
 import { ProfileQueryParam } from "@/apis/profileList";
-import Snackbar from "../myWikiPage/SnackBar/SnackBar";
+import Snackbar from "../mywikipage/SnackBar/SnackBar";
 
 interface WikiSearchListProps {
   profileInfo: ProfileType[];

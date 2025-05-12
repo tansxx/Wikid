@@ -1,6 +1,6 @@
 import styles from "./LinkButton.module.css";
 import Image from "next/image";
-import Snackbar from "../myWikiPage/SnackBar/SnackBar";
+import Snackbar from "../mywikipage/SnackBar/SnackBar";
 import { FC, useState } from "react";
 
 interface LinkButtonProps {
