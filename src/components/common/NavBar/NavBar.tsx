@@ -4,17 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useRef, useEffect } from "react";
-import NotificationModal from "@/components/myWikiPage/NotificationModal/NotificationModal";
+import NotificationModal from "@/components/mywikipage/NotificationModal/NotificationModal";
 import { useProfileImageStore } from "@/stores/useProfileImageStore";
 
 interface NavbarProps {
   profileImageUrl?: string;
+  isLoggedIn: boolean;
 }
 
-export default function Navbar({ profileImageUrl }: NavbarProps) {
+export default function Navbar({ profileImageUrl, isLoggedIn }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const { isLoggedIn, logout } = useAuthStore();
+  const { logout } = useAuthStore();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const code = useProfileCode();
   const { imageUrl } = useProfileImageStore();
@@ -34,6 +35,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
   const handleLogout = () => {
     logout();
     router.push("/");
@@ -54,13 +56,14 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
 
           <div className="hidden md:flex space-x-10">
             <Link href="/wikilist">
-              <span className="text-gray400 text-sm  ">위키목록</span>
+              <span className="text-gray400 text-sm">위키목록</span>
             </Link>
             <Link href="/boards">
-              <span className="text-gray400 text-sm ">자유게시판</span>
+              <span className="text-gray400 text-sm">자유게시판</span>
             </Link>
           </div>
         </div>
+
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (
             <>
@@ -85,7 +88,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
                 </button>
 
                 {profileOpen && (
-                  <div className="absolute  top-full mt-2  w-20 bg-white shadow-lg rounded-md border  flex flex-col  p-2 space-y-2">
+                  <div className="absolute top-full mt-2 w-20 bg-white shadow-lg rounded-md border flex flex-col p-2 space-y-2">
                     <Link
                       href="/mypage"
                       className="text-sm text-gray-700 w-full"
@@ -101,7 +104,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
                     <Link
                       href="/"
                       onClick={handleLogout}
-                      className="text-sm  text-text-gray-700 w-full"
+                      className="text-sm text-gray-700 w-full"
                     >
                       로그아웃
                     </Link>
@@ -110,11 +113,12 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
               </div>
             </>
           ) : (
-            <Link href="/login" className=" text-gray400 text-sm">
+            <Link href="/login" className="text-gray400 text-sm">
               로그인
             </Link>
           )}
         </div>
+
         <div className="md:hidden relative top-1">
           <button onClick={() => setMenuOpen((prev) => !prev)}>
             <Image
@@ -127,7 +131,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
 
           {menuOpen && (
             <div className="absolute right-0 mt-2 w-20 bg-white shadow-lg border z-50 flex rounded-md flex-col items-center p-2 space-y-2">
-              <Link href="/wikilist" className="text-sm text-gray-700  w-full">
+              <Link href="/wikilist" className="text-sm text-gray-700 w-full">
                 위키목록
               </Link>
               <Link href="/board" className="text-sm text-gray-700 w-full">
@@ -136,26 +140,28 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
 
               {isLoggedIn ? (
                 <>
-                  <button onClick={() => setProfileOpen((prev) => !prev)}>
-                    href="/notifications" className="text-sm text-gray-700
-                    w-full" 알림
+                  <button
+                    onClick={() => setProfileOpen((prev) => !prev)}
+                    className="text-sm text-gray-700 w-full"
+                  >
+                    알림
                   </button>
                   <Link
                     href="/profile"
-                    className="text-sm text-gray-700  w-full"
+                    className="text-sm text-gray-700 w-full"
                   >
                     마이페이지
                   </Link>
                   <Link
                     href="/"
-                    className="text-sm text-gray-700  w-full"
+                    className="text-sm text-gray-700 w-full"
                     onClick={handleLogout}
                   >
                     로그아웃
                   </Link>
                 </>
               ) : (
-                <Link href="/login" className="text-sm text-gray-700  w-full">
+                <Link href="/login" className="text-sm text-gray-700 w-full">
                   로그인
                 </Link>
               )}
@@ -163,6 +169,7 @@ export default function Navbar({ profileImageUrl }: NavbarProps) {
           )}
         </div>
       </div>
+
       {isNotificationOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
           <NotificationModal onClose={() => setIsNotificationOpen(false)} />
