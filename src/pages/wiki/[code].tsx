@@ -1,17 +1,17 @@
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef } from "react";
 import * as S from "./code.style";
-import ProfileBar from "@/components/myWikiPage/ProfileBar/ProfileBar";
+import ProfileBar from "@/components/mywikipage/ProfileBar/ProfileBar";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import LinkButton from "@/components/common/LinkButton";
-import QuizModal from "@/components/myWikiPage/QuizModal/QuizModal";
-import WikiEditor from "@/components/myWikiPage/WikiEditor/WikiEditor";
-import type { ProfileFormValues } from "@/components/myWikiPage/ProfileForm/ProfileForm";
+import QuizModal from "@/components/mywikipage/QuizModal/QuizModal";
+import WikiEditor from "@/components/mywikipage/WikiEditor/WikiEditor";
+import type { ProfileFormValues } from "@/components/mywikipage/ProfileForm/ProfileForm";
 
 import { useUserInfo } from "@/hooks/mywiki/useUserInfo";
 import { useProfileInfo } from "@/hooks/mywiki/useProfileInfo";
 import { notifyProfileEditing, updateProfile } from "@/apis/profile";
-import InactivityModal from "@/components/myWikiPage/InactivityModal/InactivityModal";
+import InactivityModal from "@/components/mywikipage/InactivityModal/InactivityModal";
 
 export default function WikiPage() {
   const router = useRouter();
@@ -104,7 +104,6 @@ export default function WikiPage() {
       if (typeof code === "string") {
         await notifyProfileEditing(code, securityAnswer);
 
-        // content와 profileForm을 함께 업데이트
         await updateProfile(code, {
           ...profileForm,
           content: content,
