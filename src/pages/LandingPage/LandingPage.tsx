@@ -50,7 +50,7 @@ const LandingPage = () => {
         <img
           src="/assets/images/type=image1.png"
           alt="Image description"
-          className="mt-12 mx-auto max-w-[450px] h-auto"
+          className="mt-12 mx-auto max-w-[450px] h-auto w-[98%] md:w-auto"
           style={{ position: "relative", zIndex: 2 }}
         />
 
@@ -72,7 +72,7 @@ const LandingPage = () => {
         </div>
 
         <div
-          className="md:hidden px-4 sm:px-6 text-left mt-28"
+          className="md:hidden px-4 sm:px-6 text-left mt-28 w-[200px] md:w-auto"
           style={{ zIndex: 2, position: "relative", left: "18%" }}
         >
           <div className="text-lg font-bold" style={{ color: "#4CBFA4" }}>
