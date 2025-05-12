@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import IcLink from "@/assets/icons/ic_link.svg";
-import { ProfileType } from "@/pages/wikiList";
+import { ProfileType } from "@/pages/wikilist";
 import { ProfileQueryParam } from "@/apis/profileList";
 import Snackbar from "../mywikipage/SnackBar/SnackBar";
 
