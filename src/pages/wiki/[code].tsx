@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef } from "react";
-import * as S from "./code.style";
+import * as S from "../../styles/wiki/code.style";
 import ProfileBar from "@/components/mywikipage/ProfileBar/ProfileBar";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import LinkButton from "@/components/common/LinkButton";
