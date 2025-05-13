@@ -134,7 +134,7 @@ export default function Navbar({ profileImageUrl, isLoggedIn }: NavbarProps) {
               <Link href="/wikilist" className="text-sm text-gray-700 w-full">
                 위키목록
               </Link>
-              <Link href="/board" className="text-sm text-gray-700 w-full">
+              <Link href="/boards" className="text-sm text-gray-700 w-full">
                 자유게시판
               </Link>
 
